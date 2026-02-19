@@ -279,5 +279,4 @@ bool Card_less(const Card &a, const Card &b, const Card &led_card, Suit trump) {
 /*
   Step 1: Check to see if the card is a part of the trump suit
   Step 2: Check to see if the card is a part of the led suit (the suit of the first card played)
-  
 */

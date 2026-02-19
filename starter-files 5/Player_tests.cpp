@@ -13,5 +13,8 @@ TEST(test_player_get_name) {
 }
 
 // Add more tests here
+TEST(test_player_add_card){
+
+}
 
 TEST_MAIN()
