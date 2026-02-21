@@ -111,40 +111,35 @@ Card::Card() : rank(TWO), suit(SPADES){};
 Card::Card(Rank rank_in, Suit suit_in) : 
   rank(rank_in), suit(suit_in){};
 Rank Card::get_rank() const {
-  return this->rank;
+  return rank;
 }
 Suit Card::get_suit() const {
-  return this->suit;
+  return suit;
 }
 Suit Card::get_suit(Suit trump) const {
-  return this->suit;
+  if(is_left_bower(trump)) {
+    return trump;
+  } else {
+    return suit;
+  }
 }
 bool Card::is_face_or_ace() const {
-  if (this->get_rank() > TEN){
+  if (get_rank() > TEN){
     return true;
   }
   return false;
 }
 bool Card::is_right_bower(Suit trump) const {
-  if (this->is_trump(trump) && this->get_rank() == JACK){
+  if (is_trump(trump) && get_rank() == JACK){
     return true;
   }
   return false;
 }
 bool Card::is_left_bower(Suit trump) const {
-  if (this->get_suit(trump) < CLUBS && this->get_suit(trump) == trump - 2){
-    if (this->get_rank() == JACK){
-      return true;
-    }
-  } else {
-    if (this->get_suit(trump) == trump + 2 && this->get_rank() == JACK){
-      return true;
-    }
-  }
-  return false;
+  return rank == JACK && suit == Suit_next(trump);
 }
 bool Card::is_trump(Suit trump) const {
-  if (this->get_suit() == trump){
+  if (get_suit(trump) == trump){
     return true;
   }
   return false;
@@ -185,7 +180,7 @@ bool operator<(const Card &lhs, const Card &rhs) {
 //EFFECTS Returns true if lhs is lower value than rhs or the same card as rhs.
 //  Does not consider trump.
 bool operator<=(const Card &lhs, const Card &rhs) {
-  return lhs.get_rank() <= rhs.get_rank();
+  return lhs < rhs || lhs == rhs;
 }
 
 //EFFECTS Returns true if lhs is higher value than rhs.
@@ -203,7 +198,7 @@ bool operator>(const Card &lhs, const Card &rhs) {
 //EFFECTS Returns true if lhs is higher value than rhs or the same card as rhs.
 //  Does not consider trump.
 bool operator>=(const Card &lhs, const Card &rhs) {
-  return lhs.get_rank() >= rhs.get_rank();
+  return lhs > rhs || lhs == rhs;
 }
 
 //EFFECTS Returns true if lhs is same card as rhs.
@@ -267,7 +262,7 @@ bool Card_less(const Card &a, const Card &b, const Card &led_card, Suit trump) {
   } else if(b.is_trump(trump) && !a.is_trump(trump)) {
     return true;
   }
-  Suit ledSuit = led_card.get_suit();
+  Suit ledSuit = led_card.get_suit(trump);
   if(a.get_suit(trump) == ledSuit && !(b.get_suit(trump) == ledSuit)) {
     return false;
   } else if(b.get_suit(trump) == ledSuit && !(a.get_suit(trump) == ledSuit)) {

@@ -13,12 +13,14 @@ using namespace std;
   // NOTE: Do NOT use pack.in in your implementation of this function
   // NOTE: The pack is initially full, with no cards dealt.
   Pack::Pack(){
-    for (int i = 0; i <= DIAMONDS; i++){
-        for (int j = 7; j <= ACE; j++){
-            Card newCard(static_cast<Rank>(j),static_cast<Suit>(i));
-            cards[(j-7)*i+(j-7)] = newCard;
+    int index = 0;
+    for (int suit = SPADES; suit <= DIAMONDS; suit++){
+        for (int rank = NINE; rank <= ACE; rank++){
+            cards[index] = Card(static_cast<Rank>(rank),static_cast<Suit>(suit));
+            index++;
         }
     }
+    next = 0;
   }
 
   // REQUIRES: pack_input contains a representation of a Pack in the
@@ -27,14 +29,14 @@ using namespace std;
   // EFFECTS: Initializes Pack by reading from pack_input.
   // NOTE: The pack is initially full, with no cards dealt.
   Pack::Pack(std::istream& pack_input){
-    string o; 
-    string newlin;
+    string o;
     for (int i = 0; i < PACK_SIZE; i++){
-        int rank;
-        int suit; 
-        pack_input >> rank >> o >> suit >> newlin;
-        cards[i] = Card(static_cast<Rank>(rank), static_cast<Suit>(suit));
+        string rank;
+        string suit; 
+        pack_input >> rank >> o >> suit;
+        cards[i] = Card(string_to_rank(rank), string_to_suit(suit));
     }
+    next = 0;
   }
   
   // REQUIRES: cards remain in the Pack
@@ -55,7 +57,7 @@ using namespace std;
     std::array<Card, PACK_SIZE> shuffledCards;
     for(size_t i = 0; i < 7; ++i) {
       for(size_t j = 0; j < PACK_SIZE / 2; j++) {
-        shuffledCards[2* j] = cards[j + PACK_SIZE / 2];
+        shuffledCards[2*j] = cards[j + PACK_SIZE / 2];
         shuffledCards[2*j + 1] = cards[j];
 
       }
