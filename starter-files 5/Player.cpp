@@ -112,6 +112,7 @@ class SimplePlayer : public Player {
         allCards.erase(allCards.begin() + ind);
         return play;
     }
+    
   private:
     std::string name;
     std::vector<Card> allCards;

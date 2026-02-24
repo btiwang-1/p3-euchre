@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <sstring>
 #include "Player.hpp"
 #include "Card.hpp"
 #include "Pack.hpp"
@@ -13,6 +12,13 @@ using namespace std;
 /*
     How the game will work:
         a. SETUP THE TABLE
+            DEALER: 
+                In each hand, one player is designated as the dealer 
+                (if humans were playing the game, the one who passes out the cards). 
+                In our game, player 0 deals during the first hand. Each subsequent hand, 
+                the role of dealer moves one player to the left.
+
+
             TEAMS:
                 Players 0 and 2 are TEAM ONE
                 Players 1 and 3 are TEAM TWO
@@ -28,7 +34,7 @@ using namespace std;
                     (it is turned face up, while the other cards are all face down)
         b. MAKING TRUMP
             i. Round One
-                (Yo who is the dealer)
+                
                 - Ordering Up! Starts with the Player to the left of the dealer
                     and goes around the circle to see if anyone wants to order up or pass
                 - Should someone order up, the suit of the UPCARD becomes the TRUMP SUIT (Use Player::make_trump())
@@ -68,12 +74,14 @@ class Team(){
         odup = yon;
     }
     int get_points(){ return points; }
+    int get_tricks() { return tricks_won; }
     void won_trick(){ tricks_won++; }
     void set_points(int &pts){ points = pts; }
     void reset(){ 
         total += get_points();
         set_points(0);
         tricks_won = 0; 
+        odup = false;
     }
     int total_points() { return total; };
     int calculate(){
@@ -83,7 +91,12 @@ class Team(){
             } else if (tricks_won == 5){
                 return 2;
             }
+        } else {
+            if (tricks_won > 3){
+                return 2;
+            }
         }
+        return 0;
     }
 
     private:
@@ -105,18 +118,108 @@ class Game(){
         }
         Team t1(players[0], players[1]);
         Team t2(players[2], players[3]);
+        dealer = players[0];
     }
     
-    void play();
+    void play() {
+        int startingIndexOfPlayers;
+        if(whatNumberOfTrickIndex == 0) {
+            startingIndexOfPlayers = players.find(players.begin(), players.end(), dealer - 1);
+            if(startingIndexOfPlayers < 0) { 
+                startingIndexOfPlayers = 3;
+            }
+        } else {
+            
+        }
+
+        for(size_t i = 1; i < 4; ++i) {
+
+        }
+        
+    }
 
     private:
+    int whatNumberOfTrickIndex;
     std::vector<Player*> players;
+    Player* dealer;
     int pts_to_win = 1;
     Pack pack;
-    void shuffle();
-    void deal();
-    void make_trump();
-    void play_hand();
+    Card upcard;
+    void shuffle(bool isShuffle){
+        // call pack.shuffle()
+        if (isShuffle){
+            pack.shuffle();
+        } else {
+            pack.reset();
+        }
+    }
+    void deal(){
+        // call add_card
+        // use the 3-2-3-2 sequence followed by the 2-3-2-3 sequence
+        void add_up(int index, int times){
+            for (int j = 0; j < times; j++){
+                players[index].add_card(pack.deal_one());
+            }
+        }
+        for (size_t i = 0; i < players.size(); i++){
+            if (i % 2 == 0){
+                add_up(i,3); 
+            } else {
+                add_up(i,2);
+            }
+        }
+        for (size_t i = 0; i < players.size(); i++){
+            if (i % 2 == 0){
+                add_up(i,2); 
+            } else {
+                add_up(i,3);
+            }
+        }
+        upcard = pack.deal_one();
+    }
+    void print();
+    void make_trump(){ // use istream?
+        int round = 1;
+        string decision;
+        Player* starter;
+        int dealerIndex = find(players.begin(), players.end(), dealer);
+        if (dealerIndex < 3){
+            starter = players[dealerIndex+1];
+        } else {
+            starter = players[0];
+        }
+        int starterIndex = find(players.begin(), players.end(), starter);
+        for (size_t i = starterIndex; i < players.size() + starterIndex; i++){
+            cin >> decision;
+            if (decision != "pass"){
+                if (i < 3){
+                    player[i].make_trump(upcard, (i==dealerIndex), round, upcard.get_suit());
+                } else {
+                    player[i-starterIndex].make_trump(upcard, (i==dealerIndex), round, upcard.get_suit());
+                }
+                return;
+            }
+        }
+        round++;
+        // Round 2
+        for (size_t i = starterIndex; i < players.size() + starterIndex; i++){
+            cin >> decision;
+            if (i != dealerIndex){
+                if (decision != "pass"){
+                    if (i < 3){
+                        player[i].make_trump(upcard, false, round, string_to_suit(decision));
+                    } else {
+                        player[i-starterIndex].make_trump(upcard, false, round, string_to_suit(decision));
+                    } 
+                    return;
+                }
+            } else {
+                // Screw the dealer!
+                player[dealerIndex].make_trump(upcard, true, round, string_to_suit(decision));
+            }
+        }
+    } 
+    void play_hand(); // REMEMBER: each hand, rotate the dealer 1 to the left; Eldest Hand leads the first trick
 }
 
 
