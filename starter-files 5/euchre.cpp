@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <sstring>
 #include "Player.hpp"
@@ -66,12 +67,24 @@ class Team(){
     void order_up(bool &yon){ //yon = yes or no; odup = orderup
         odup = yon;
     }
-    int get_points();
+    int get_points(){ return points; }
     void won_trick(){ tricks_won++; }
-    void set_points(int pts);
-    void reset();
-    int total_points();
-    int calculate();
+    void set_points(int &pts){ points = pts; }
+    void reset(){ 
+        total += get_points();
+        set_points(0);
+        tricks_won = 0; 
+    }
+    int total_points() { return total; };
+    int calculate(){
+        if (odup){
+            if (tricks_won > 3 && tricks_won < 5){
+                return 1;
+            } else if (tricks_won == 5){
+                return 2;
+            }
+        }
+    }
 
     private:
     Player* PLRONE;
@@ -81,16 +94,17 @@ class Team(){
     int total;
     int tricks_won;
 };
+
 class Game(){
     public:
-    Game();
 
-    
-
-    Game(Player p1, Player p2, Player p3, Player p4, Pack pack, int pts_to_win) :
-     pts_to_win(pts_to_win), players.push_back(p1), players.push_back(p2), 
-     players.push_back(p3), players.push_back(p4), pack(pack){
-
+    Game(vector<Player*> plyrs, Pack pack, int pts_to_win) :
+     pts_to_win(pts_to_win), pack(pack){
+        for (size_t i = 0; i < plyrs.size(); i++){
+            players.push_back(plyrs[i]);
+        }
+        Team t1(players[0], players[1]);
+        Team t2(players[2], players[3]);
     }
     
     void play();
@@ -115,7 +129,7 @@ int main(int argc, char *argv[]) {
         << "NAME4 TYPE4" << endl;
         return 1;
     }
-
+    vector<pair<Player*, string>> plyrs;
     // create a file stream for the input file
     ifstream isn(argv[1]);
     if (!isn.is_open()) {
