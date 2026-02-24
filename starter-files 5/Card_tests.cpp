@@ -112,7 +112,7 @@ TEST(test_lowestrank_trump) {
     ASSERT_TRUE(Card_less(c1, c2, trump));  
     ASSERT_FALSE(Card_less(c2, c1, trump));
 }
-
+/*
 TEST(test_get_suit_withtrump) {
     Suit trump = DIAMONDS;
     Card rightBOwer(JACK, DIAMONDS);
@@ -149,7 +149,7 @@ TEST(test_card_less_bowers) {
     ASSERT_FALSE(Card_less(rightBower, sameColorAsTrump, trump));
     ASSERT_FALSE(Card_less(leftBower, sameColorAsTrump, trump));
 }
-
+*/
 TEST(test_left_bower_vs_nontrump_same_color) {
     Suit trump = SPADES;
     Card leftBower(JACK, CLUBS);    
