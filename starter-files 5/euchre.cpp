@@ -123,25 +123,13 @@ class Game(){
         dealer = players[0];
     }
     
-    void play() {
-        int startingIndexOfPlayers;
-        if(whatNumberOfTrickIndex == 0) {
-            startingIndexOfPlayers = players.find(players.begin(), players.end(), dealer - 1);
-            if(startingIndexOfPlayers < 0) { 
-                startingIndexOfPlayers = 3;
-            }
-        } else {
-            
-        }
-
-        for(size_t i = 1; i < 4; ++i) {
-
-        }
-        
+    void play(bool &gameEnd) {
+        play_hand();git 
     }
 
     private:
     int whatNumberOfTrickIndex;
+    int hand_num = 0;
     std::vector<Player*> players;
     bool isShuffles = false;
     int NUM_TRICKS = 5;
@@ -261,8 +249,23 @@ class Game(){
         } else {
             dealerIndex = 0;
         }
+        hand_num++;
     } // REMEMBER: each hand, rotate the dealer 1 to the left; Eldest Hand leads the first trick
-    void play_trick();
+    void play_trick(){
+        int startingIndexOfPlayers;
+        if(whatNumberOfTrickIndex == 0) {
+            startingIndexOfPlayers = players.find(players.begin(), players.end(), dealer - 1);
+            if(startingIndexOfPlayers < 0) { 
+                startingIndexOfPlayers = 3;
+            }
+        } else {
+            
+        }
+
+        for(size_t i = 1; i < 4; ++i) {
+
+        }
+    }
 }
 
 
