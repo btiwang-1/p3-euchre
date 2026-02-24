@@ -73,6 +73,8 @@ class Team(){
     void order_up(bool &yon){ //yon = yes or no; odup = orderup
         odup = yon;
     }
+    Player* get_playerone(){ return PLRONE; }
+    Player* get_playertwo(){ return PLRTWO; }
     int get_points(){ return points; }
     int get_tricks() { return tricks_won; }
     void won_trick(){ tricks_won++; }
@@ -111,8 +113,8 @@ class Team(){
 class Game(){
     public:
 
-    Game(vector<Player*> plyrs, Pack pack, int pts_to_win) :
-     pts_to_win(pts_to_win), pack(pack){
+    Game(vector<Player*> plyrs, Pack pack, bool shuff, int pts_to_win) :
+     pts_to_win(pts_to_win), pack(pack), isShuffles(shuff){
         for (size_t i = 0; i < plyrs.size(); i++){
             players.push_back(plyrs[i]);
         }
@@ -141,7 +143,11 @@ class Game(){
     private:
     int whatNumberOfTrickIndex;
     std::vector<Player*> players;
+    bool isShuffles = false;
+    int NUM_TRICKS = 5;
+    Team* winner; 
     Player* dealer;
+    int dealerIndex;
     int pts_to_win = 1;
     Pack pack;
     Card upcard;
@@ -181,8 +187,8 @@ class Game(){
     void make_trump(){ // use istream?
         int round = 1;
         string decision;
+        dealerIndex = find(players.begin(), players.end(), dealer);
         Player* starter;
-        int dealerIndex = find(players.begin(), players.end(), dealer);
         if (dealerIndex < 3){
             starter = players[dealerIndex+1];
         } else {
@@ -219,24 +225,78 @@ class Game(){
             }
         }
     } 
-    void play_hand(); // REMEMBER: each hand, rotate the dealer 1 to the left; Eldest Hand leads the first trick
+    void play_hand(Team &tm1, Team &tm2){
+        /*
+        Shuffle 
+        Deal
+        Make_trump
+        Play tricks (five times)
+        Score
+        */
+
+        shuffle(isShuffles);
+        deal();
+        make_trump();
+        // Play each trick. Still not sure if we should have a separate function for playing tricks, 
+        // I think we should though and have play be the master function that runs play_hand and prints 
+        // everything to the output stream in a while loop in main until a team wins and then we make a break function
+        for (size_t i = 0; i < NUM_TRICKS; i++){
+            play_trick();
+        }
+        if (tm1.calculate() > tm2.calculate()){
+            // print that the players in team 1 won that round
+            // if team 1 meets or exceeds points to win then end game
+            if (tm1.total_points() >= pts_to_win){
+                // end game
+            }
+        } else {
+            // print that the players in team 2 won that round
+            // if team 2 meets or exceeds points to win then end game
+            if (tm2.total_points() >= pts_to_win){
+                // end game
+            }
+        }
+        if (dealerIndex < 3){
+            dealerIndex++;
+        } else {
+            dealerIndex = 0;
+        }
+    } // REMEMBER: each hand, rotate the dealer 1 to the left; Eldest Hand leads the first trick
+    void play_trick();
 }
 
 
 int main(int argc, char *argv[]) {
+    bool game_end = false;
+    int NUM_ARGS = 12
+    int PLR_ARG_START = 4
+    vector<Player*> plrs; 
     // check if there are four arguments in the command line
     // and print a helpful message
-    if (argc != 12) {
+    if (argc != NUM_ARGS) {
         cout << "Usage: euchre.exe PACK_FILENAME [shuffle|noshuffle] "
         << "POINTS_TO_WIN NAME1 TYPE1 NAME2 TYPE2 NAME3 TYPE3 "
         << "NAME4 TYPE4" << endl;
         return 1;
     }
-    vector<pair<Player*, string>> plyrs;
+    // initialize Players vector
+    for (int i = PLR_ARG_START; i < NUM_ARGS - 1; i+2){
+        if (argv[i+1] == "Simple"){
+            plrs.push_back(SimplePlayer(argv[i]));
+        } else {
+            plrs.push_back(HumanPlayer(argv[i]));
+        }
+    }
+
     // create a file stream for the input file
     ifstream isn(argv[1]);
     if (!isn.is_open()) {
         cout << "Error opening file " << argv[1] << endl;
         return 1;
+    }
+    // Create Game
+    Game euchreGame(plrs, Pack(isn), (argv[2] == "shuffle"), static_cast<int>(argv[3]));
+    while (!game_end){
+        euchreGame.play();
     }
 }
