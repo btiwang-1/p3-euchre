@@ -1,0 +1,55 @@
+/*
+    How the game will work:
+        a. SETUP THE TABLE
+            DEALER: *DONE
+                In each hand, one player is designated as the dealer 
+                (if humans were playing the game, the one who passes out the cards). 
+                In our game, player 0 deals during the first hand. Each subsequent hand, 
+                the role of dealer moves one player to the left.
+
+
+            TEAMS: *DONE
+                Players 0 and 2 are TEAM ONE
+                Players 1 and 3 are TEAM TWO
+            i. Shuffle *done
+                - Call Pack::shuffle()
+                * If shuffling is disabled, call Pack::reset() anytime shuffling would be called
+            ii. Deal *done
+                - Call Player::add_card(Pack::dealOne()) for every card you want to give a player, *It returns a Card*
+                - Remember 3-2-3-2 and then 2-3-2-3; Each player gets 5 cards in the end.
+
+                - Four cards remain in the deck after the deal. 
+                    The NEXT card in the pack is called the UPCARD 
+                    (it is turned face up, while the other cards are all face down)
+        b. MAKING TRUMP *Fully Implemented? 
+            i. Round One
+                
+                - Ordering Up! Starts with the Player to the left of the dealer
+                    and goes around the circle to see if anyone wants to order up or pass
+                - Should someone order up, the suit of the UPCARD becomes the TRUMP SUIT (Use Player::make_trump())
+                - The dealer has the opportunity to replace one of their cards with the UPCARD
+            ii. Round Two
+                - If all players pass the first round, We do another making
+                - The UPCARD's suit is rejected and cannot be ordered up. Instead, 
+                    the players may order up any suit other than the UPCARD's suit.
+                    (Using the same rotation as round one starting at the eldest hand)
+                - If making reaches the dealer during the second round, a variant called 
+                    screw the dealer is invoked: the dealer must order up a suit other than 
+                    the rejected suit. (Must we program this part?)
+
+        c. TRICK TAKING (NEED TO COMPLETE)
+            - Once the trump is determined, we go through FIVE tricks: 
+            Trick: Players take turns laying down cards, highest card wins the trick (Use Card::Card_less)
+            - Person who plays first becomes LEADER
+            * For the 1st Trick, the ELDEST HAND leads
+
+            TRICKS:
+                1. Leader leads any of their cards (the suit off that card becomes the led_suit)
+                2. Each player must follow suit if they can but must put something down regardless
+                3. Play moves to the left around the table, with each player playing one card.
+            - The winner of the trick leads the next trick.
+        d. SCORING *Done, just need to specify march and euchred in print
+            i. If the team that ordered up the trump suit takes 3 or 4 tricks, they get 1 point.
+            ii. If the team that ordered up the trump suit takes all 5 tricks, they get 2 points. This is called a MARCH.
+            iii. If the team that did not order up takes 3, 4, or 5 tricks, they receive 2 points. This is called EUCHRED.
+*/

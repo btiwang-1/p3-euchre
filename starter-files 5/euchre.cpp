@@ -10,65 +10,10 @@
 using namespace std;
 
 
-/*
-    How the game will work:
-        a. SETUP THE TABLE
-            DEALER: *DONE
-                In each hand, one player is designated as the dealer 
-                (if humans were playing the game, the one who passes out the cards). 
-                In our game, player 0 deals during the first hand. Each subsequent hand, 
-                the role of dealer moves one player to the left.
-
-
-            TEAMS: *DONE
-                Players 0 and 2 are TEAM ONE
-                Players 1 and 3 are TEAM TWO
-            i. Shuffle *done
-                - Call Pack::shuffle()
-                * If shuffling is disabled, call Pack::reset() anytime shuffling would be called
-            ii. Deal *done
-                - Call Player::add_card(Pack::dealOne()) for every card you want to give a player, *It returns a Card*
-                - Remember 3-2-3-2 and then 2-3-2-3; Each player gets 5 cards in the end.
-
-                - Four cards remain in the deck after the deal. 
-                    The NEXT card in the pack is called the UPCARD 
-                    (it is turned face up, while the other cards are all face down)
-        b. MAKING TRUMP *Fully Implemented? 
-            i. Round One
-                
-                - Ordering Up! Starts with the Player to the left of the dealer
-                    and goes around the circle to see if anyone wants to order up or pass
-                - Should someone order up, the suit of the UPCARD becomes the TRUMP SUIT (Use Player::make_trump())
-                - The dealer has the opportunity to replace one of their cards with the UPCARD
-            ii. Round Two
-                - If all players pass the first round, We do another making
-                - The UPCARD's suit is rejected and cannot be ordered up. Instead, 
-                    the players may order up any suit other than the UPCARD's suit.
-                    (Using the same rotation as round one starting at the eldest hand)
-                - If making reaches the dealer during the second round, a variant called 
-                    screw the dealer is invoked: the dealer must order up a suit other than 
-                    the rejected suit. (Must we program this part?)
-
-        c. TRICK TAKING (NEED TO COMPLETE)
-            - Once the trump is determined, we go through FIVE tricks: 
-            Trick: Players take turns laying down cards, highest card wins the trick (Use Card::Card_less)
-            - Person who plays first becomes LEADER
-            * For the 1st Trick, the ELDEST HAND leads
-
-            TRICKS:
-                1. Leader leads any of their cards (the suit off that card becomes the led_suit)
-                2. Each player must follow suit if they can but must put something down regardless
-                3. Play moves to the left around the table, with each player playing one card.
-            - The winner of the trick leads the next trick.
-        d. SCORING *Done, just need to specify march and euchred in print
-            i. If the team that ordered up the trump suit takes 3 or 4 tricks, they get 1 point.
-            ii. If the team that ordered up the trump suit takes all 5 tricks, they get 2 points. This is called a MARCH.
-            iii. If the team that did not order up takes 3, 4, or 5 tricks, they receive 2 points. This is called EUCHRED.
-*/
-
 class Team {
     public:
-    Team(Player* p1, Player* p2) : PLRONE(p1), PLRTWO(p2){}
+    Team(Player* p1, Player* p2) : PLRONE(p1), PLRTWO(p2), odup(false), 
+        points(0), total(0), tricks_won(0){}
 
     bool ordered_up() const { return odup; }
     void order_up(bool &yon){ //yon = yes or no; odup = orderup
@@ -87,15 +32,18 @@ class Team {
         odup = false;
     }
     int total_points() const { return total; };
-    int calculate() const {
+    int calculate() {
         if (odup){
             if (tricks_won > 3 && tricks_won < 5){
+                set_points(1);
                 return 1;
             } else if (tricks_won == 5){
+                set_points(2);
                 return 2;
             }
         } else {
             if (tricks_won > 3){
+                set_points(2);
                 return 2;
             }
         }
@@ -105,7 +53,7 @@ class Team {
     private:
     Player* PLRONE;
     Player* PLRTWO;
-    bool odup = false;
+    bool odup;
     int points;
     int total;
     int tricks_won;
@@ -115,20 +63,23 @@ class Game {
     public:
 
     Game(vector<Player*> plyrs, Pack pack, bool shuff, int pts_to_win) :
-     isShuffles(shuff), pts_to_win(pts_to_win), gamepack(pack) {
+        hand_num(0),                 
+        isShuffles(shuff),           
+        t1(plyrs[0], plyrs[2]),      
+        t2(plyrs[1], plyrs[3]),      
+        pts_to_win(pts_to_win),      
+        gamepack(pack){
         for (size_t i = 0; i < plyrs.size(); i++){
             players.push_back(plyrs[i]);
         }
-        *t1 = Team(players[0], players[1]);
-        *t2 = Team(players[2], players[3]);
         dealerIndex = 0;
     }
     
-    void play(int &gameEnd) {
-        if (winner != t1 && winner != t2){
-            play_hand(t1, t2, gameEnd);
+    void play(int *gameEnd, istream& isme) {
+        if (winner == nullptr){
+            play_hand(&t1, &t2, gameEnd, isme);
         } else {
-            gameEnd = true;
+            *gameEnd = 1;
             // Player A and Player B win!
             cout << winner->get_playerone()->get_name() << " " <<
                 winner->get_playertwo()->get_name() << " win!";
@@ -141,9 +92,9 @@ class Game {
     std::vector<Player*> players;
     bool isShuffles = false;
     int NUM_TRICKS = 5;
-    Team* t1;
-    Team* t2;
-    Team* winner; 
+    Team t1;
+    Team t2;
+    Team* winner == nullptr; 
     Suit trump;
     Player* currentLeader;
     int dealerIndex;
@@ -184,7 +135,7 @@ class Game {
         upcard = gamepack.deal_one();
     }
     void print();
-    void make_trump(){ // use istream?
+    void make_trump(istream& isme){ // use istream?
         int round = 1;
         string decision;
         int starterIndex;
@@ -194,14 +145,17 @@ class Game {
             starterIndex = 0;
         }
         for (size_t i = starterIndex; i < players.size() + starterIndex; i++){
-            cin >> decision;
+            isme >> decision;
             if (decision != "pass"){
                 trump = upcard.get_suit();
                 if (i < 3){
                     players[i]->make_trump(upcard, (i==dealerIndex), round, trump);
+                    cout << players[i]->get_name() << " orders up " << trump << endl; 
                 } else {
                     players[i-starterIndex]->make_trump(upcard, (i==dealerIndex), round, trump);
+                    cout << players[i-starterIndex]->get_name() << " orders up " << trump << endl;
                 }
+                cout << "\n";
                 return;
             }
             // Use this somehow player[i-starterIndex]->
@@ -209,16 +163,24 @@ class Game {
         round++;
         // Round 2
         for (size_t i = starterIndex; i < players.size() + starterIndex; i++){
-            cin >> decision;
+            isme >> decision;
             if (i != dealerIndex){
                 if (decision != "pass"){
                     trump = string_to_suit(decision);
                     if (i < 3){
                         players[i]->make_trump(upcard, false, round, trump);
+                        cout << players[i]->get_name() << " orders up " << trump << endl;
                     } else {
                         players[i-starterIndex]->make_trump(upcard, false, round, trump);
+                        cout << players[i-starterIndex]->get_name() << " orders up " << trump << endl;
                     } 
+                    cout << "\n";
                     return;
+                }
+                if (i < 3){
+                    cout << players[i]->get_name() << " passes" << endl;
+                } else {
+                    cout << players[i-starterIndex]->get_name() << " passes" << endl;
                 }
             } else {
                 trump = string_to_suit(decision);
@@ -231,25 +193,25 @@ class Game {
         string winningTeam = p1->get_name() + " and " + p2->get_name();
         cout << winningTeam << " win the hand" << endl;
         if (players[0] == p1){
-            if (t1->ordered_up()){
-                if(t1->get_points() == 2){
+            if (t1.ordered_up()){
+                if(t1.get_points() == 2){
                     cout << "march!" << endl;
                 } 
-            } else if (t1->get_points() == 2){
+            } else if (t1.get_points() == 2){
                 cout << "euchred!" << endl;
             }
         } else {
-            if (t2->ordered_up()){
-                if(t2->get_points() == 2){
+            if (t2.ordered_up()){
+                if(t2.get_points() == 2){
                     cout << "march!" << endl;
                 } 
-            } else if (t2->get_points() == 2){
+            } else if (t2.get_points() == 2){
                 cout << "euchred!" << endl;
             }
         }
     }
-    
-    void play_hand(Team *tm1, Team *tm2, bool &endgame){
+
+    void play_hand(Team *tm1, Team *tm2, int *endgame, istream& isme){
         /*
         Shuffle 
         Deal
@@ -263,7 +225,7 @@ class Game {
         cout << "Hand " << hand_num << "\n";
         cout << players[dealerIndex] << "deals\n";
         cout << upcard << "turned up" << endl;
-        make_trump();
+        make_trump(isme);
         // Play each trick. Still not sure if we should have a separate function for playing tricks, 
         // I think we should though and have play be the master function that runs play_hand and prints 
         // everything to the output stream in a while loop in main until a team wins and then we make a break function
@@ -272,19 +234,19 @@ class Game {
         }
         if (tm1->calculate() > tm2->calculate()){
             // print that the players in team 1 won that round
-            print_handwinner(tm1->ordered_up());
+            print_handwinner(tm1->ordered_up(), tm1->get_playerone(), tm1->get_playertwo());
             // if team 1 meets or exceeds points to win then end game
             if (tm1->total_points() >= pts_to_win){
-                winner = t1;
-                endgame = true;
+                winner = &t1;
+                *endgame = 1;
             }
         } else {
             // print that the players in team 2 won that round
-            print_handwinner(tm2->ordered_up());
+            print_handwinner(tm2->ordered_up(), tm2->get_playerone(), tm2->get_playertwo());
             // if team 2 meets or exceeds points to win then end game
             if (tm2->total_points() >= pts_to_win){
-                winner = t2;
-                endgame = true;
+                winner = &t2;
+                *endgame = 1;
             }
         }
         if (dealerIndex < 3){
@@ -292,6 +254,8 @@ class Game {
         } else {
             dealerIndex = 0;
         }
+        t1.reset();
+        t2.reset();
         hand_num++;
     } // REMEMBER: each hand, rotate the dealer 1 to the left; Eldest Hand leads the first trick
     void play_trick(){
@@ -339,13 +303,19 @@ class Game {
             }
         }
         currentLeader = players[currentHighestIndex];
+        if (currentHighestIndex % 2 == 0){
+            t1.won_trick();
+        } else {
+            t2.won_trick();
+        }
         whatNumberOfTrickIndex++; 
     }
 };
 
 
 int main(int argc, char *argv[]) {
-    int game_end = -1;
+    int gend = -1;
+    int *game_end = &gend;
     int NUM_ARGS = 12;
     int PLR_ARG_START = 4;
     vector<Player*> plrs; 
@@ -369,8 +339,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     // Create Game
-    Game euchreGame(plrs, Pack(isn), (string(argv[2]) == "shuffle"), static_cast<int>(*argv[3]));
-    while (game_end < 0){
-        euchreGame.play(game_end);
+    Game euchreGame(plrs, Pack(isn), (string(argv[2]) == "shuffle"), stoi(argv[3]));
+    while (gend < 0){
+        euchreGame.play(game_end, isn);
     }
 }
