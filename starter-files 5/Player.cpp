@@ -179,7 +179,7 @@ class HumanPlayer : public Player {
         allCards.erase(allCards.begin() + crd);
         return chosenCrd;
     }
-
+    
   private:
     std::string name;
     std::vector<Card> allCards;
