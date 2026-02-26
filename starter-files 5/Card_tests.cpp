@@ -96,7 +96,7 @@ TEST(test_all_comparisons) {
     ASSERT_TRUE(c1 < c2);
     ASSERT_FALSE(c2 < c1);
     ASSERT_TRUE(c2 > c1);
-    ASSERT_TRUE(c1 <= c2)
+    ASSERT_TRUE(c1 <= c2);
     ASSERT_TRUE(c2 >= c1);
 
     ASSERT_TRUE(c1 < c3); //in the instance of a tie
@@ -192,5 +192,21 @@ TEST(test_card_less_trump_vs_led_ace) {
     Card ledAce(ACE, SPADES);
     ASSERT_FALSE(Card_less(trumpNine, ledAce, ledCard, trump));
     ASSERT_TRUE(Card_less(ledAce, trumpNine, ledCard, trump));
+}
+TEST(test_all_is_face_or_ace) {
+    Card jack(JACK, SPADES);
+    Card queen(QUEEN, HEARTS);
+    Card king(KING, CLUBS);
+    Card ace(ACE, DIAMONDS);
+    Card ten(TEN, SPADES);
+    Card two(TWO, HEARTS);
+
+    ASSERT_TRUE(jack.is_face_or_ace());
+    ASSERT_TRUE(queen.is_face_or_ace());
+    ASSERT_TRUE(king.is_face_or_ace());
+    ASSERT_TRUE(ace.is_face_or_ace());
+
+    ASSERT_FALSE(ten.is_face_or_ace());
+    ASSERT_FALSE(two.is_face_or_ace());
 }
 TEST_MAIN()

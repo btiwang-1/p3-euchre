@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include <algorithm>
 #include <vector>
 #include <string>
 #include <cassert>
@@ -36,10 +37,10 @@ class SimplePlayer : public Player {
         int faceOrAceCheckCounterTwo = 0;
         Suit sameColor = Suit_next(trumpSuit); 
         for(size_t i = 0; i < allCards.size(); ++i) {
-          if(allCards[i].get_suit(sameColor) == sameColor && allCards[i].is_face_or_ace()) {
+          if(allCards[i].is_trump(sameColor) && allCards[i].is_face_or_ace()) {
             faceOrAceCheckCounterTwo++;
           }
-        }
+        } 
         if(faceOrAceCheckCounterTwo >= 1) {
           order_up_suit = sameColor;
           return true;

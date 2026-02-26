@@ -13,7 +13,7 @@ TEST(test_player_get_name) {
 }
 
 TEST(test_player_add_card_and_lead) {
-    Player * p = Player_factory("Simpleton", "Simple");
+    Player * p = Player_factory("Alice", "Simple");
     Card c(ACE, CLUBS);
     p->add_card(c);
     ASSERT_EQUAL(c, p->lead_card(HEARTS)); 
@@ -63,7 +63,7 @@ TEST(test_simple_player_play_follows_suit) {
 }
 
 TEST(test_simple_player_make_trump_r2_same_color) {
-    Player * p = Player_factory("Bob", "Simple");
+    Player * p = Player_factory("Alice", "Simple");
     p->add_card(Card(JACK, SPADES));
     Suit order;
     ASSERT_TRUE(p->make_trump(Card(NINE, CLUBS), false, 2, order));
@@ -80,7 +80,21 @@ TEST(test_simple_player_play_single_card) {
     ASSERT_EQUAL(only, play); 
     delete p;
 }
-
+TEST(test_simple_player_play_card_lowest) {
+    Player * p = Player_factory("Alice", "Simple");
+    
+    p->add_card(Card(JACK, HEARTS)); 
+    p->add_card(Card(ACE, HEARTS));
+    p->add_card(Card(NINE, SPADES));
+    
+    Card led(ACE, DIAMONDS);
+    Suit trump = HEARTS;
+    
+    Card play = p->play_card(led, trump);
+    ASSERT_EQUAL(Card(NINE, SPADES), play);
+    
+    delete p;
+}
 
 TEST(test_simple_player_make_trump_r1_true) {
     Player * p = Player_factory("Alice", "Simple");
@@ -117,26 +131,7 @@ TEST(test_simple_player_make_trump_r2_fail) {
     Suit order;
     ASSERT_FALSE(p->make_trump(Card(NINE, CLUBS), false, 2, order));
     delete p;
-}/*
-TEST(test_simple_player_add_and_discard) {
-    Player * p = Player_factory("Alice", "Simple");
-    p->add_card(Card(NINE, CLUBS));    
-    p->add_card(Card(TEN, CLUBS));    
-    p->add_card(Card(JACK, CLUBS));    
-    p->add_card(Card(QUEEN, CLUBS));    
-    p->add_card(Card(KING, CLUBS));    
-
-    Card upcard(NINE, SPADES);
-    p->add_and_discard(upcard);
-
-    ASSERT_EQUAL(Card(TEN, CLUBS), p->lead_card(SPADES));
-    ASSERT_EQUAL(Card(JACK, CLUBS), p->lead_card(SPADES));
-    ASSERT_EQUAL(Card(QUEEN, CLUBS), p->lead_card(SPADES));
-    ASSERT_EQUAL(Card(KING, CLUBS), p->lead_card(SPADES));
-    ASSERT_EQUAL(Card(NINE, SPADES), p->lead_card(SPADES));
-
-    delete p;
-}*/
+}
 TEST(test_simple_player_add_and_discard) {
     Player * p = Player_factory("Alice", "Simple");
 
@@ -153,6 +148,24 @@ TEST(test_simple_player_add_and_discard) {
     ASSERT_NOT_EQUAL(Card(NINE, CLUBS), c1);
     ASSERT_NOT_EQUAL(Card(NINE, CLUBS), c2);
     ASSERT_NOT_EQUAL(Card(NINE, CLUBS), c3);
+    delete p;
+}
+TEST(test_simple_player_add_and_discard_lowest) {
+    Player * p = Player_factory("Alice", "Simple");
+    p->add_card(Card(JACK, HEARTS)); 
+
+    p->add_card(Card(ACE, HEARTS));
+    p->add_card(Card(KING, HEARTS));
+    p->add_card(Card(QUEEN, HEARTS));
+    p->add_card(Card(TEN, HEARTS));
+    
+    Card upcard(NINE, HEARTS);
+    p->add_and_discard(upcard);
+
+    for(int i = 0; i < 5; ++i) {
+        Card led = p->lead_card(HEARTS);
+        ASSERT_NOT_EQUAL(Card(NINE, HEARTS), led);
+    }
     delete p;
 }
 TEST(test_simple_player_does_not_follow_with_left_bower) {
@@ -177,7 +190,7 @@ TEST(test_simple_player_lead_highest_trump_only) {
     delete p;
 }
 TEST(test_simple_player_make_trump_r2_next_suit_bower) {
-    Player * p = Player_factory("Bob", "Simple");
+    Player * p = Player_factory("Alice", "Simple");
     p->add_card(Card(JACK, CLUBS));
     Suit order;
     ASSERT_TRUE(p->make_trump(Card(NINE, SPADES), false, 2, order));
@@ -198,4 +211,39 @@ TEST(test_simple_player_play_card_follow_suit_bower) {
 }
 
 
+TEST(test_simple_player_make_trump_r1_left_bower) {
+    Player * p = Player_factory("Alice", "Simple");
+    p->add_card(Card(ACE, SPADES));
+    p->add_card(Card(JACK, CLUBS));
+    p->add_card(Card(NINE, HEARTS));
+    p->add_card(Card(TEN, HEARTS));
+    p->add_card(Card(NINE, DIAMONDS));
+
+    Card upcard(TEN, SPADES);
+    Suit order_up_suit;
+    bool decision = p->make_trump(upcard, false, 1, order_up_suit);
+
+    ASSERT_TRUE(decision);
+    ASSERT_EQUAL(order_up_suit, SPADES);
+
+    delete p;
+}
+
+TEST(test_simple_player_make_trump_r2_left_bower) {
+    Player * p = Player_factory("Alice", "Simple");
+    p->add_card(Card(JACK, HEARTS));
+    p->add_card(Card(NINE, SPADES));
+    p->add_card(Card(TEN, SPADES));
+    p->add_card(Card(NINE, CLUBS));
+    p->add_card(Card(TEN, CLUBS));
+
+    Card upcard(TEN, DIAMONDS);
+    Suit order_up_suit;
+    bool decision = p->make_trump(upcard, false, 2, order_up_suit);
+
+    ASSERT_TRUE(decision);
+    ASSERT_EQUAL(order_up_suit, HEARTS);
+
+    delete p;
+}
 TEST_MAIN()
