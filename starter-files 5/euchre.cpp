@@ -12,7 +12,8 @@ using namespace std;
 
 class Team {
     public:
-    Team(Player* p1, Player* p2) : PLRONE(p1), PLRTWO(p2), odup(false), 
+    Team(Player* p1, Player* p2) : 
+        PLRONE(p1), PLRTWO(p2), odup(false), 
         points(0), total(0), tricks_won(0){}
 
     bool ordered_up() const { return odup; }
@@ -56,7 +57,8 @@ class Team {
 class Game {
     public:
 
-    Game(vector<Player*> plyrs, Pack pack, bool shuff, int pts_to_win) :
+    Game(vector<Player*> plyrs, Pack pack, 
+        bool shuff, int pts_to_win) :
         hand_num(0),                 
         isShuffles(shuff),           
         t1(plyrs[0], plyrs[2]),      
@@ -75,8 +77,9 @@ class Game {
         } else {
             *gameEnd = 1;
             // Player A and Player B win!
-            cout << winner->get_playerone()->get_name() << " " <<
-                winner->get_playertwo()->get_name() << " win!";
+            cout << winner->get_playerone()->get_name() << 
+                " " << winner->get_playertwo()->get_name() 
+                << " win!";
         }
     }
 
@@ -197,15 +200,12 @@ class Game {
             else { startingIndexOfPlayers = 0; }
             currentLeader = players[startingIndexOfPlayers];
         } else { startingIndexOfPlayers = find(players.begin(), players.end(), currentLeader) - players.begin(); }
-
         int currentHighestIndex = startingIndexOfPlayers;
         Card led_card = currentLeader->lead_card(trump);
         cout << led_card << " led by " << currentLeader->get_name() << endl;
         Card highest_Card = led_card;
-
         if(startingIndexOfPlayers == 3) { startingIndexOfPlayers = 0; } 
         else { startingIndexOfPlayers++; }
-        // playing cards
         for(size_t i = 1; i < 4; ++i) {
             if(startingIndexOfPlayers != 0) {
                 Card playedCard = players[startingIndexOfPlayers]->play_card(led_card, trump);
