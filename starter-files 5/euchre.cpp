@@ -176,7 +176,7 @@ class Game {
         << " deals\n" << upcard << " turned up" << endl; // prints the hand
         make_trump(isme); 
         Player* trick_leader = players[(dealerIndex + 1) % 4];
-        for (size_t i = 0; i < NUM_TRICKS; i++){ trick_leader = play_trick(trick_leader); }
+        for (size_t i = 0; i < NUM_TRICKS; i++){trick_leader = play_trick(trick_leader);}
         t1.calculate();
         t2.calculate();
         if (tm1->get_tricks() > tm2->get_tricks()) {
