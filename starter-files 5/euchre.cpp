@@ -136,7 +136,7 @@ class Game {
         for (int round = 1; round <= 2; ++round) {
             for (int i = 0; i < 4; ++i) {
                 int currentPlayer = (starterIndex + i) % 4;
-                bool deald = (round == 2 && i == 3);
+                bool deald = (round == 2 && currentPlayer == dealerIndex);
 
                 if (deald || players[currentPlayer]->make_trump(upcard, 
                         (currentPlayer == dealerIndex), round, trump)) {
@@ -144,7 +144,7 @@ class Game {
                     bool yes = true;
                     if (currentPlayer % 2 == 0) { t1.order_up(yes); } 
                     else { t2.order_up(yes); }
-                    if (round == 1) { players[dealerIndex]->add_and_discard(upcard); }
+                    if (round == 1 && trump == upcard.get_suit()) { players[dealerIndex]->add_and_discard(upcard); }
                     return;
                 }
                 cout << players[currentPlayer]->get_name() << " passes" << endl;
@@ -164,22 +164,20 @@ class Game {
             cout << "euchred!" << endl;
         }
     }
-
+    
     void play_hand(Team *tm1, Team *tm2, int *endgame, istream& isme){
         whatNumberOfTrickIndex = 0;
-        shuffle(isShuffles); // Shuffle
-        deal(); // Deal
+        shuffle(isShuffles); // shuffless
+        deal(); 
         cout << "Hand " << hand_num << "\n" << players[dealerIndex]->get_name() << " deals\n"
-         << upcard << " turned up" << endl; // Print the hand
-        make_trump(isme); // Make Trump
+         << upcard << " turned up" << endl; // prints the hand
+        make_trump(isme); 
         Player* trick_leader = players[(dealerIndex + 1) % 4];
         for (size_t i = 0; i < NUM_TRICKS; i++){
             trick_leader = play_trick(trick_leader);
         }
         t1.calculate();
         t2.calculate();
-        t1.reset();
-        t2.reset();
 
         if (tm1->get_tricks() > tm2->get_tricks()) {
             print_handwinner(tm1->ordered_up(), 
@@ -190,6 +188,10 @@ class Game {
                             tm2->get_playerone(), 
                             tm2->get_playertwo());
         }
+
+        t1.reset();
+        t2.reset();
+
         cout << t1.get_playerone()->get_name() << " and "
             << t1.get_playertwo()->get_name()
             << " have " << t1.total_points() << " points\n";
@@ -197,7 +199,6 @@ class Game {
         cout << t2.get_playerone()->get_name() << " and "
             << t2.get_playertwo()->get_name()
             << " have " << t2.total_points() << " points\n\n";
-            
         if (t1.total_points() >= pts_to_win) {
             winner = &t1;
             *endgame = 1;
@@ -298,7 +299,7 @@ int main(int argc, char *argv[]) {
         cout << "Error opening " << argv[1] << endl;
         return 5;
     }
-    Game euchreGame(plrs, Pack(isn), (string(argv[2]) == "shuffle"), stoi(argv[3]));  // Create Game
+    Game euchreGame(plrs, Pack(isn), (string(argv[2]) == "shuffle"), stoi(argv[3]));  // make Game
     while (gend < 0){ euchreGame.play(&gend, cin); }
     for (size_t i = 0; i < plrs.size(); ++i) { delete plrs[i]; }
     return 0;

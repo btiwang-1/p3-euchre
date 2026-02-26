@@ -112,44 +112,33 @@ TEST(test_lowestrank_trump) {
     ASSERT_TRUE(Card_less(c1, c2, trump));  
     ASSERT_FALSE(Card_less(c2, c1, trump));
 }
-/*
-TEST(test_get_suit_withtrump) {
+TEST(test_get_suit_left_bower) {
     Suit trump = DIAMONDS;
-    Card rightBOwer(JACK, DIAMONDS);
-    ASSERT_EQUAL(rightBOwer.get_suit(trump), DIAMONDS);
-    Card leftbower(JACK, HEARTS);
-    ASSERT_EQUAL(leftbower.get_suit(trump), DIAMONDS);
-    Card reguCARD(TEN, CLUBS);
-    ASSERT_EQUAL(reguCARD.get_suit(trump), DIAMONDS);
+    Card leftBower(JACK, HEARTS); 
+    ASSERT_EQUAL(leftBower.get_suit(trump), DIAMONDS);
+    
+    Card nCard(ACE, HEARTS);
+    ASSERT_EQUAL(nCard.get_suit(trump), HEARTS);
 }
-
-TEST(test_cardless_ledsuit) {
+TEST(test_card_less_left_bower_as_led_suit) {
     Suit trump = DIAMONDS;
-    Card ledCard(NINE, SPADES);
-    Card sameSUITAsLed(TWO, SPADES);
-    Card sameNumAsLed(NINE, CLUBS);
+    Card led_card(ACE, HEARTS);
+    Card leftBower(JACK, HEARTS); 
+    Card ace_hearts(ACE, HEARTS);  
 
-    ASSERT_FALSE(Card_less(sameSUITAsLed, ledCard, ledCard, trump));
-    ASSERT_TRUE(Card_less(sameNumAsLed, ledCard, ledCard, trump));
+    ASSERT_FALSE(Card_less(leftBower, ace_hearts, led_card, trump));
+    ASSERT_TRUE(Card_less(ace_hearts, leftBower, led_card, trump));
 }
+TEST(test_suit_tie_break) {
+    Card nineOfDia(NINE, DIAMONDS);
+    Card nineOfClu(NINE, CLUBS);
+    Card nineOfHea(NINE, HEARTS);
+    Card nineOfSpa(NINE, SPADES);
 
-
-TEST(test_card_less_bowers) {
-    Suit trump = SPADES;
-    Card rightBower(JACK, SPADES);
-    Card leftBower(JACK, CLUBS); 
-    Card sameColorAsTrump(FOUR, SPADES);
-    Card difference(ACE, DIAMONDS);
-    ASSERT_TRUE(Card_less(difference, sameColorAsTrump, trump));
-    ASSERT_TRUE(Card_less(leftBower, rightBower, trump));
-    ASSERT_TRUE(Card_less(sameColorAsTrump, rightBower, trump));
-    ASSERT_TRUE(Card_less(sameColorAsTrump, leftBower, trump));
-
-    ASSERT_FALSE(Card_less(rightBower, leftBower, trump));
-    ASSERT_FALSE(Card_less(rightBower, sameColorAsTrump, trump));
-    ASSERT_FALSE(Card_less(leftBower, sameColorAsTrump, trump));
+    ASSERT_TRUE(nineOfClu < nineOfDia);
+    ASSERT_TRUE(nineOfHea < nineOfClu);
+    ASSERT_TRUE(nineOfSpa < nineOfHea);
 }
-*/
 TEST(test_left_bower_vs_nontrump_same_color) {
     Suit trump = SPADES;
     Card leftBower(JACK, CLUBS);    
@@ -158,5 +147,50 @@ TEST(test_left_bower_vs_nontrump_same_color) {
     ASSERT_TRUE(Card_less(sameSuitAsTrump, leftBower, trump));
     ASSERT_FALSE(Card_less(leftBower, sameSuitAsTrump, trump));
 }
+TEST(test_led_suit_vs_cross_suit) {
+    Suit trump = CLUBS;
+    Card led_card(NINE, HEARTS);
+    Card cross_suit(ACE, SPADES);
+    Card led_suit_card(TWO, HEARTS);
 
+    ASSERT_FALSE(Card_less(led_suit_card, cross_suit, led_card, trump));
+    ASSERT_TRUE(Card_less(cross_suit, led_suit_card, led_card, trump));
+}
+TEST(test_right_bower_vs_left_bower) {
+    Suit trump = HEARTS;
+    Card rightBower(JACK, HEARTS);
+    Card leftBower(JACK, DIAMONDS);
+    ASSERT_FALSE(Card_less(rightBower, leftBower, trump));
+    ASSERT_TRUE(Card_less(leftBower, rightBower, trump));
+}
+
+TEST(test_is_right_bower_false_for_left_bower) {
+    Suit trump = CLUBS;
+    Card leftBower(JACK, SPADES);
+    ASSERT_FALSE(leftBower.is_right_bower(trump));
+}
+
+TEST(test_get_suit_next_suit_not_jack) {
+    Suit trump = DIAMONDS;
+    Card heartsAce(ACE, HEARTS); 
+    ASSERT_EQUAL(heartsAce.get_suit(trump), HEARTS);
+}
+
+TEST(test_led_suit_rank_vs_cross_suit_ace) {
+    Suit trump = SPADES;
+    Card ledCard(NINE, HEARTS);
+    Card crossAce(ACE, CLUBS);
+    Card ledNine(NINE, HEARTS);
+    ASSERT_FALSE(Card_less(ledNine, crossAce, ledCard, trump));
+    ASSERT_TRUE(Card_less(crossAce, ledNine, ledCard, trump));
+}
+
+TEST(test_card_less_trump_vs_led_ace) {
+    Suit trump = HEARTS;
+    Card ledCard(ACE, SPADES);
+    Card trumpNine(NINE, HEARTS);
+    Card ledAce(ACE, SPADES);
+    ASSERT_FALSE(Card_less(trumpNine, ledAce, ledCard, trump));
+    ASSERT_TRUE(Card_less(ledAce, trumpNine, ledCard, trump));
+}
 TEST_MAIN()

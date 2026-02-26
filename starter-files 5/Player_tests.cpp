@@ -106,9 +106,10 @@ TEST(test_simple_player_make_trump_r2_dealer) {
     Card upcard(NINE, DIAMONDS);
     Suit order_up;
     ASSERT_TRUE(p->make_trump(upcard, true, 2, order_up));
-    ASSERT_TRUE(order_up == HEARTS || order_up == DIAMONDS);
+    ASSERT_EQUAL(HEARTS, order_up);
 
     delete p;
+
 }
 
 TEST(test_simple_player_make_trump_r2_fail) {
@@ -116,16 +117,32 @@ TEST(test_simple_player_make_trump_r2_fail) {
     Suit order;
     ASSERT_FALSE(p->make_trump(Card(NINE, CLUBS), false, 2, order));
     delete p;
-}
+}/*
+TEST(test_simple_player_add_and_discard) {
+    Player * p = Player_factory("Alice", "Simple");
+    p->add_card(Card(NINE, CLUBS));    
+    p->add_card(Card(TEN, CLUBS));    
+    p->add_card(Card(JACK, CLUBS));    
+    p->add_card(Card(QUEEN, CLUBS));    
+    p->add_card(Card(KING, CLUBS));    
 
+    Card upcard(NINE, SPADES);
+    p->add_and_discard(upcard);
 
+    ASSERT_EQUAL(Card(TEN, CLUBS), p->lead_card(SPADES));
+    ASSERT_EQUAL(Card(JACK, CLUBS), p->lead_card(SPADES));
+    ASSERT_EQUAL(Card(QUEEN, CLUBS), p->lead_card(SPADES));
+    ASSERT_EQUAL(Card(KING, CLUBS), p->lead_card(SPADES));
+    ASSERT_EQUAL(Card(NINE, SPADES), p->lead_card(SPADES));
+
+    delete p;
+}*/
 TEST(test_simple_player_add_and_discard) {
     Player * p = Player_factory("Alice", "Simple");
 
-    p->add_card(Card(NINE, CLUBS));    
-    p->add_card(Card(JACK, CLUBS));    
-    p->add_card(Card(ACE, HEARTS));    
-
+    p->add_card(Card(NINE, CLUBS));
+    p->add_card(Card(JACK, CLUBS));
+    p->add_card(Card(ACE, HEARTS));
     Card upcard(TEN, DIAMONDS);
     p->add_and_discard(upcard);
 
@@ -136,49 +153,49 @@ TEST(test_simple_player_add_and_discard) {
     ASSERT_NOT_EQUAL(Card(NINE, CLUBS), c1);
     ASSERT_NOT_EQUAL(Card(NINE, CLUBS), c2);
     ASSERT_NOT_EQUAL(Card(NINE, CLUBS), c3);
-
     delete p;
 }
-
-TEST(test_left_bower_is_trump) {
-    Card c(JACK, CLUBS);
-    ASSERT_TRUE(c.is_left_bower(SPADES)); 
+TEST(test_simple_player_does_not_follow_with_left_bower) {
+    Player * p = Player_factory("Alice", "Simple");
+    p->add_card(Card(JACK, SPADES)); 
+    p->add_card(Card(NINE, HEARTS)); 
+    
+    Card led(KING, CLUBS); 
+    Suit trump = SPADES;   
+    
+    Card play = p->play_card(led, trump);
+    ASSERT_EQUAL(Card(NINE, HEARTS), play); 
+    delete p;
 }
-
-TEST(test_right_bower_is_trump) {
-    Card c(JACK, SPADES);
-    ASSERT_TRUE(c.is_trump(SPADES));
-}
-
-TEST(test_simple_player_make_trump_r1) {
-    Player* p = Player_factory("Alice", "Simple");
-
-    Card upcard(TEN, HEARTS);
+TEST(test_simple_player_lead_highest_trump_only) {
+    Player * p = Player_factory("Alice", "Simple");
     p->add_card(Card(NINE, HEARTS));
-    p->add_card(Card(TEN, CLUBS));
-    Suit order_up;
-    ASSERT_FALSE(p->make_trump(upcard, false, 1, order_up));
-
-    p->add_card(Card(JACK, HEARTS));
-    p->add_card(Card(QUEEN, HEARTS));
-    ASSERT_TRUE(p->make_trump(upcard, false, 1, order_up));
-    ASSERT_EQUAL(HEARTS, order_up);
-
+    p->add_card(Card(JACK, HEARTS)); 
+    
+    Card led = p->lead_card(HEARTS);
+    ASSERT_EQUAL(Card(JACK, HEARTS), led);
     delete p;
 }
-
-TEST(test_simple_player_make_trump_r2) {
-    Player* p = Player_factory("Alice", "Simple");
-
-    Card upcard(NINE, DIAMONDS);
-    p->add_card(Card(JACK, HEARTS));
-    Suit order_up;
-    ASSERT_TRUE(p->make_trump(upcard, false, 2, order_up));
-    ASSERT_EQUAL(HEARTS, order_up);
-
+TEST(test_simple_player_make_trump_r2_next_suit_bower) {
+    Player * p = Player_factory("Bob", "Simple");
+    p->add_card(Card(JACK, CLUBS));
+    Suit order;
+    ASSERT_TRUE(p->make_trump(Card(NINE, SPADES), false, 2, order));
+    ASSERT_EQUAL(CLUBS, order);
     delete p;
 }
-
+TEST(test_simple_player_play_card_follow_suit_bower) {
+    Player * p = Player_factory("Alice", "Simple");
+    p->add_card(Card(JACK, HEARTS));
+    p->add_card(Card(NINE, DIAMONDS));
+    
+    Card led(ACE, DIAMONDS);
+    Suit trump = DIAMONDS;
+    
+    Card play = p->play_card(led, trump);
+    ASSERT_EQUAL(Card(JACK, HEARTS), play);
+    delete p;
+}
 
 
 TEST_MAIN()

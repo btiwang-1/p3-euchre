@@ -146,21 +146,20 @@ class HumanPlayer : public Player {
         return false;
       }
     }
-
-    void add_and_discard(const Card &upcard)  {
-      allCards.push_back(upcard);
+    
+    void add_and_discard(const Card &upcard) {
+      int upcardInedx;
       std::sort(allCards.begin(), allCards.end());
       print_hand();
       std::cout << "Discard upcard: [-1]\n";
       std::cout << "Human player " << name << ", please select a card to discard:\n";
-      int chosenIndex;
-      std::cin >> chosenIndex;
-      if(chosenIndex == -1) {
-        allCards.pop_back();
-      } else {
-        allCards.erase(allCards.begin() + chosenIndex);
-      }
+      std::cin >> upcardInedx;
 
+      if (upcardInedx != -1) {
+        allCards.erase(allCards.begin() + upcardInedx);
+        allCards.push_back(upcard);
+        std::sort(allCards.begin(), allCards.end()); 
+      }
     }
 
     Card lead_card(Suit trump)  {

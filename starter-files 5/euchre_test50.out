@@ -147,7 +147,8 @@ Human player Liskov, please select a card:
 Nine of Hearts played by Liskov
 Judea takes the trick
 
-Judea and Liskov win the hand
+Ivan and Kunle win the hand
+euchred!
 Ivan and Kunle have 2 points
 Judea and Liskov have 0 points
 
@@ -185,9 +186,8 @@ Judea orders up Diamonds
 Human player Judea's hand: [0] Nine of Diamonds
 Human player Judea's hand: [1] Ten of Diamonds
 Human player Judea's hand: [2] Jack of Hearts
-Human player Judea's hand: [3] Jack of Diamonds
-Human player Judea's hand: [4] Queen of Hearts
-Human player Judea's hand: [5] Ace of Clubs
+Human player Judea's hand: [3] Queen of Hearts
+Human player Judea's hand: [4] Ace of Clubs
 Discard upcard: [-1]
 Human player Judea, please select a card to discard:
 Human player Kunle's hand: [0] Nine of Spades
@@ -214,7 +214,7 @@ Ten of Hearts played by Ivan
 Human player Judea's hand: [0] Nine of Diamonds
 Human player Judea's hand: [1] Ten of Diamonds
 Human player Judea's hand: [2] Jack of Hearts
-Human player Judea's hand: [3] Queen of Hearts
+Human player Judea's hand: [3] Jack of Diamonds
 Human player Judea's hand: [4] Ace of Clubs
 Human player Judea, please select a card:
 Ace of Clubs played by Judea
@@ -241,16 +241,16 @@ Nine of Hearts played by Ivan
 Human player Judea's hand: [0] Nine of Diamonds
 Human player Judea's hand: [1] Ten of Diamonds
 Human player Judea's hand: [2] Jack of Hearts
-Human player Judea's hand: [3] Queen of Hearts
+Human player Judea's hand: [3] Jack of Diamonds
 Human player Judea, please select a card:
 Nine of Diamonds played by Judea
 Judea takes the trick
 
 Human player Judea's hand: [0] Ten of Diamonds
 Human player Judea's hand: [1] Jack of Hearts
-Human player Judea's hand: [2] Queen of Hearts
+Human player Judea's hand: [2] Jack of Diamonds
 Human player Judea, please select a card:
-Queen of Hearts led by Judea
+Jack of Diamonds led by Judea
 Human player Kunle's hand: [0] Nine of Spades
 Human player Kunle's hand: [1] Ten of Spades
 Human player Kunle's hand: [2] Jack of Spades
@@ -452,7 +452,8 @@ Human player Kunle, please select a card:
 Jack of Hearts played by Kunle
 Kunle takes the trick
 
-Judea and Liskov win the hand
+Ivan and Kunle win the hand
+euchred!
 Ivan and Kunle have 4 points
 Judea and Liskov have 1 points
 

@@ -124,16 +124,10 @@ Suit Card::get_suit(Suit trump) const {
   }
 }
 bool Card::is_face_or_ace() const {
-  if (get_rank() > TEN){
-    return true;
-  }
-  return false;
+  return (rank > TEN);
 }
 bool Card::is_right_bower(Suit trump) const {
-  if (is_trump(trump) && get_rank() == JACK){
-    return true;
-  }
-  return false;
+  return (rank == JACK && suit == trump);
 }
 bool Card::is_left_bower(Suit trump) const {
   return (rank == JACK && suit == Suit_next(trump));
