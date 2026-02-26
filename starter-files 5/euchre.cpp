@@ -211,8 +211,7 @@ class Game {
     Player* play_trick(Player* currentLeader){
         int startingIndexOfPlayers; // eldest hand
         if(whatNumberOfTrickIndex == 0) {
-            if(dealerIndex + 1 < 4) { startingIndexOfPlayers = dealerIndex + 1; } 
-            else { startingIndexOfPlayers = 0; }
+            startingIndexOfPlayers = (dealerIndex + 1) % 4;
             currentLeader = players[startingIndexOfPlayers];
         } else { startingIndexOfPlayers = find(players.begin(), 
             players.end(), currentLeader) - players.begin(); }
@@ -242,14 +241,10 @@ class Game {
                 if(Card_less(highest_Card, playedCard, led_card, trump)) {
                     currentHighestIndex = startingIndexOfPlayers;
                     highest_Card = playedCard;
-                }
-                startingIndexOfPlayers++;
-            }
-        }
+                } startingIndexOfPlayers++; } }
         currentLeader = players[currentHighestIndex];
         cout << currentLeader->get_name() << " takes the trick" << endl << endl;
-        if (currentHighestIndex % 2 == 0){ t1.won_trick(); } 
-        else { t2.won_trick(); }
+        if (currentHighestIndex % 2 == 0){ t1.won_trick(); } else { t2.won_trick(); }
         whatNumberOfTrickIndex++; 
         return currentLeader;
     }
