@@ -18,7 +18,8 @@ class SimplePlayer : public Player {
       std::sort(allCards.begin(), allCards.end());
     }
 
-    bool make_trump(const Card &upcard, bool is_dealer, int round, Suit &order_up_suit) const {
+    bool make_trump(const Card &upcard, bool is_dealer, 
+      int round, Suit &order_up_suit) const {
       Suit trumpSuit = upcard.get_suit(); 
       if(round == 1) {
         int faceCheckCounter = 0;
@@ -92,15 +93,14 @@ class SimplePlayer : public Player {
     Card play_card(const Card &led_card, Suit trump) {
         int ind = -1;
         Suit led_suit = led_card.get_suit(trump);
-
         for (size_t i = 0; i < allCards.size(); i++){
             if (allCards[i].get_suit(trump) == led_suit){
-                if (ind == -1 || Card_less(allCards[ind],allCards[i],led_card,trump)){
+                if (ind == -1 || 
+                  Card_less(allCards[ind],allCards[i],led_card,trump)){
                     ind = i;
                 }
             }
         }
-        
         if (ind == -1){
             ind = 0;
             for (size_t i = 1; i < allCards.size(); i++){
@@ -109,8 +109,6 @@ class SimplePlayer : public Player {
                 }
             }
         }
-        
-    
         Card play = allCards[ind];
         allCards.erase(allCards.begin() + ind);
         return play;
@@ -135,9 +133,11 @@ class HumanPlayer : public Player {
       std::sort(allCards.begin(), allCards.end());
     }
 
-    bool make_trump(const Card &upcard, bool is_dealer, int round, Suit &order_up_suit) const {
+    bool make_trump(const Card &upcard, bool is_dealer, 
+      int round, Suit &order_up_suit) const {
       print_hand();
-      std::cout << "Human player " << name << ", please enter a suit, or \"pass\":\n";
+      std::cout << "Human player " << name  
+        << ", please enter a suit, or \"pass\":\n";
       std::string decision;
       std::cin >> decision;
       if(decision != "pass") {
@@ -153,7 +153,8 @@ class HumanPlayer : public Player {
       std::sort(allCards.begin(), allCards.end());
       print_hand();
       std::cout << "Discard upcard: [-1]\n";
-      std::cout << "Human player " << name << ", please select a card to discard:\n";
+      std::cout << "Human player " << name 
+        << ", please select a card to discard:\n";
       std::cin >> upcardInedx;
 
       if (upcardInedx != -1) {
