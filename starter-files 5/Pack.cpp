@@ -57,8 +57,8 @@ using namespace std;
     std::array<Card, PACK_SIZE> shuffledCards;
     for(size_t i = 0; i < 7; ++i) {
       for(size_t j = 0; j < PACK_SIZE / 2; j++) {
-        shuffledCards[2*j] = cards[j + PACK_SIZE / 2];
-        shuffledCards[2*j + 1] = cards[j];
+        shuffledCards[2*j] = cards[j + PACK_SIZE / 2]; // even index
+        shuffledCards[2*j + 1] = cards[j]; // assigns odd to the index
 
       }
       cards=shuffledCards;

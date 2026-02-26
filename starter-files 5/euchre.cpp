@@ -15,7 +15,7 @@ class Team {
         points(0), total(0), tricks_won(0){}
 
     bool ordered_up() const { return odup; }
-    void order_up(bool &yon){ //yon = yes or no; odup = orderup
+    void order_up(bool yon){ //yon = yes or no; odup = orderup
         odup = yon;
     }
     Player* get_playerone() const { return PLRONE; }
@@ -131,28 +131,34 @@ class Game {
         upcard = gamepack.deal_one();
     }
     void print();
+    void handle_order_up(int playerIndex, int round) {
+        if (playerIndex % 2 == 0) { 
+            t1.order_up(true); 
+        } else { 
+            t2.order_up(true); 
+        }
+        if (round == 1) { 
+            players[dealerIndex]->add_and_discard(upcard); 
+        }
+    }
     void make_trump(istream& isme){ // use istream?
         int starterIndex = (dealerIndex + 1) % 4;
         for (int round = 1; round <= 2; ++round) {
             for (int i = 0; i < 4; ++i) {
                 int currentPlayer = (starterIndex + i) % 4;
                 bool deald = (round == 2 && currentPlayer == dealerIndex);
-
                 if (deald || players[currentPlayer]->make_trump(upcard, 
                         (currentPlayer == dealerIndex), round, trump)) {
                     cout << players[currentPlayer]->get_name() << 
                         " orders up " << trump << "\n";
-                    bool yes = true;
-                    if (currentPlayer % 2 == 0) { t1.order_up(yes); } 
-                    else { t2.order_up(yes); }
-                    if (round == 1 && trump == upcard.get_suit()) { 
-                        players[dealerIndex]->add_and_discard(upcard); }
+                    handle_order_up(currentPlayer, round);
                     return;
                 }
                 cout << players[currentPlayer]->get_name() << " passes" << endl;
             }
         }
     } 
+    
     void print_handwinner(bool odup, Player* p1, Player* p2) {
         cout << p1->get_name() << " and " << p2->get_name() << 
             " win the hand" << endl;
@@ -176,7 +182,7 @@ class Game {
         << " deals\n" << upcard << " turned up" << endl; // prints the hand
         make_trump(isme); 
         Player* trick_leader = players[(dealerIndex + 1) % 4];
-        for (size_t i = 0; i < NUM_TRICKS; i++){trick_leader = play_trick(trick_leader);}
+        for (size_t i = 0; i<NUM_TRICKS; i++){trick_leader = play_trick(trick_leader);}
         t1.calculate();
         t2.calculate();
         if (tm1->get_tricks() > tm2->get_tricks()) {
