@@ -65,22 +65,22 @@ class SimplePlayer : public Player {
 
     Card lead_card(Suit trump) {
         int ind = -1;
-        for (size_t i = 0; i<allCards.size(); i++){
-            if (allCards[i].get_suit(trump) != trump){
-                if (ind == -1 || Card_less(allCards[ind],allCards[i],trump)){
+        for (size_t i = 0; i < allCards.size(); i++) {
+            if (!allCards[i].is_trump(trump)) {
+                if (ind == -1 || Card_less(allCards[ind], allCards[i], trump)) {
                     ind = i;
                 }
             }
         }
-
-        if (ind == -1){
+        if (ind == -1) {
             ind = 0;
-            for (int i = 1; i < allCards.size(); ++i) {
-            if (Card_less(allCards[ind], allCards[i], trump)) {
-                ind = i;
+            for (size_t i = 1; i < allCards.size(); ++i) {
+                if (Card_less(allCards[ind], allCards[i], trump)) {
+                    ind = i;
+                }
             }
         }
-        }
+        
         Card led = allCards[ind];
         allCards.erase(allCards.begin() + ind);
         return led;
@@ -88,7 +88,7 @@ class SimplePlayer : public Player {
 
     Card play_card(const Card &led_card, Suit trump) {
         int ind = -1;
-        Suit led_suit = led_card.get_suit();
+        Suit led_suit = led_card.get_suit(trump);
 
         for (size_t i = 0; i < allCards.size(); i++){
             if (allCards[i].get_suit() == led_suit){

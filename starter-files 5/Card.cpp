@@ -136,13 +136,10 @@ bool Card::is_right_bower(Suit trump) const {
   return false;
 }
 bool Card::is_left_bower(Suit trump) const {
-  return rank == JACK && suit == Suit_next(trump);
+  return (rank == JACK && suit == Suit_next(trump));
 }
 bool Card::is_trump(Suit trump) const {
-  if (get_suit(trump) == trump){
-    return true;
-  }
-  return false;
+  return (suit == trump || is_left_bower(trump));
 }
 
 //EFFECTS Prints Card to stream, for example "Two of Spades"
