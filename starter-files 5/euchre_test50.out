@@ -37,7 +37,6 @@ Human player Judea's hand: [3] King of Hearts
 Human player Judea's hand: [4] Ace of Hearts
 Human player Judea, please enter a suit, or "pass":
 Judea orders up Hearts
-
 Human player Judea's hand: [0] Nine of Spades
 Human player Judea's hand: [1] Ten of Spades
 Human player Judea's hand: [2] Jack of Spades
@@ -148,8 +147,7 @@ Human player Liskov, please select a card:
 Nine of Hearts played by Liskov
 Judea takes the trick
 
-Ivan and Kunle win the hand
-euchred!
+Judea and Liskov win the hand
 Ivan and Kunle have 2 points
 Judea and Liskov have 0 points
 
@@ -192,7 +190,6 @@ Human player Judea's hand: [4] Queen of Hearts
 Human player Judea's hand: [5] Ace of Clubs
 Discard upcard: [-1]
 Human player Judea, please select a card to discard:
-
 Human player Kunle's hand: [0] Nine of Spades
 Human player Kunle's hand: [1] Ten of Spades
 Human player Kunle's hand: [2] Jack of Spades
@@ -345,7 +342,6 @@ Human player Liskov's hand: [3] King of Hearts
 Human player Liskov's hand: [4] Ace of Hearts
 Human player Liskov, please enter a suit, or "pass":
 Liskov orders up Hearts
-
 Human player Liskov's hand: [0] Nine of Spades
 Human player Liskov's hand: [1] Ten of Spades
 Human player Liskov's hand: [2] Jack of Spades
@@ -456,8 +452,7 @@ Human player Kunle, please select a card:
 Jack of Hearts played by Kunle
 Kunle takes the trick
 
-Ivan and Kunle win the hand
-euchred!
+Judea and Liskov win the hand
 Ivan and Kunle have 4 points
 Judea and Liskov have 1 points
 
