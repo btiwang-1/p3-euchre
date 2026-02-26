@@ -22,7 +22,7 @@ class SimplePlayer : public Player {
       if(round == 1) {
         int faceCheckCounter = 0;
         for(size_t i = 0; i < allCards.size(); ++i) {
-          if(allCards[i].get_suit() == trumpSuit && allCards[i].is_face_or_ace()) {
+          if(allCards[i].is_trump(trumpSuit) && allCards[i].is_face_or_ace()) {
             faceCheckCounter++;
           }
         }
@@ -36,7 +36,7 @@ class SimplePlayer : public Player {
         int faceOrAceCheckCounterTwo = 0;
         Suit sameColor = Suit_next(trumpSuit); 
         for(size_t i = 0; i < allCards.size(); ++i) {
-          if(allCards[i].get_suit() == sameColor && allCards[i].is_face_or_ace()) {
+          if(allCards[i].is_trump(sameColor) && allCards[i].is_face_or_ace()) {
             faceOrAceCheckCounterTwo++;
           }
         } 
@@ -93,7 +93,7 @@ class SimplePlayer : public Player {
         Suit led_suit = led_card.get_suit(trump);
 
         for (size_t i = 0; i < allCards.size(); i++){
-            if (allCards[i].get_suit() == led_suit){
+            if (allCards[i].get_suit(trump) == led_suit){
                 if (ind == -1 || Card_less(allCards[ind],allCards[i],led_card,trump)){
                     ind = i;
                 }
@@ -131,6 +131,7 @@ class HumanPlayer : public Player {
     void add_card(const Card &c) {
       assert(MAX_HAND_SIZE > allCards.size());
       allCards.push_back(c);
+      std::sort(allCards.begin(), allCards.end());
     }
 
     bool make_trump(const Card &upcard, bool is_dealer, int round, Suit &order_up_suit) const {

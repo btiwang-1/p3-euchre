@@ -9,25 +9,25 @@ Human player Judea's hand: [3] King of Hearts
 Human player Judea's hand: [4] Ace of Hearts
 Human player Judea, please enter a suit, or "pass":
 Judea passes
-Human player Kunle's hand: [0] Queen of Spades
-Human player Kunle's hand: [1] King of Spades
-Human player Kunle's hand: [2] Nine of Clubs
-Human player Kunle's hand: [3] Ten of Clubs
-Human player Kunle's hand: [4] Jack of Clubs
+Human player Kunle's hand: [0] Nine of Clubs
+Human player Kunle's hand: [1] Ten of Clubs
+Human player Kunle's hand: [2] Jack of Clubs
+Human player Kunle's hand: [3] Queen of Spades
+Human player Kunle's hand: [4] King of Spades
 Human player Kunle, please enter a suit, or "pass":
 Kunle passes
-Human player Liskov's hand: [0] Ace of Spades
-Human player Liskov's hand: [1] Nine of Hearts
-Human player Liskov's hand: [2] Ten of Hearts
-Human player Liskov's hand: [3] Queen of Clubs
-Human player Liskov's hand: [4] King of Clubs
+Human player Liskov's hand: [0] Nine of Hearts
+Human player Liskov's hand: [1] Ten of Hearts
+Human player Liskov's hand: [2] Queen of Clubs
+Human player Liskov's hand: [3] King of Clubs
+Human player Liskov's hand: [4] Ace of Spades
 Human player Liskov, please enter a suit, or "pass":
 Liskov passes
-Human player Ivan's hand: [0] Jack of Hearts
-Human player Ivan's hand: [1] Queen of Hearts
-Human player Ivan's hand: [2] Ace of Clubs
-Human player Ivan's hand: [3] Nine of Diamonds
-Human player Ivan's hand: [4] Ten of Diamonds
+Human player Ivan's hand: [0] Nine of Diamonds
+Human player Ivan's hand: [1] Ten of Diamonds
+Human player Ivan's hand: [2] Jack of Hearts
+Human player Ivan's hand: [3] Queen of Hearts
+Human player Ivan's hand: [4] Ace of Clubs
 Human player Ivan, please enter a suit, or "pass":
 Ivan passes
 Human player Judea's hand: [0] Nine of Spades
@@ -37,6 +37,7 @@ Human player Judea's hand: [3] King of Hearts
 Human player Judea's hand: [4] Ace of Hearts
 Human player Judea, please enter a suit, or "pass":
 Judea orders up Hearts
+
 Human player Judea's hand: [0] Nine of Spades
 Human player Judea's hand: [1] Ten of Spades
 Human player Judea's hand: [2] Jack of Spades
@@ -44,111 +45,112 @@ Human player Judea's hand: [3] King of Hearts
 Human player Judea's hand: [4] Ace of Hearts
 Human player Judea, please select a card:
 Jack of Spades led by Judea
-Human player Kunle's hand: [0] Queen of Spades
-Human player Kunle's hand: [1] King of Spades
-Human player Kunle's hand: [2] Nine of Clubs
-Human player Kunle's hand: [3] Ten of Clubs
-Human player Kunle's hand: [4] Jack of Clubs
-Human player Kunle, please select a card:
-Jack of Clubs played by Kunle
-Human player Liskov's hand: [0] Ace of Spades
-Human player Liskov's hand: [1] Nine of Hearts
-Human player Liskov's hand: [2] Ten of Hearts
-Human player Liskov's hand: [3] Queen of Clubs
-Human player Liskov's hand: [4] King of Clubs
-Human player Liskov, please select a card:
-King of Clubs played by Liskov
-Human player Ivan's hand: [0] Jack of Hearts
-Human player Ivan's hand: [1] Queen of Hearts
-Human player Ivan's hand: [2] Ace of Clubs
-Human player Ivan's hand: [3] Nine of Diamonds
-Human player Ivan's hand: [4] Ten of Diamonds
-Human player Ivan, please select a card:
-Jack of Hearts played by Ivan
-Ivan takes the trick
-
-Human player Ivan's hand: [0] Queen of Hearts
-Human player Ivan's hand: [1] Ace of Clubs
-Human player Ivan's hand: [2] Nine of Diamonds
-Human player Ivan's hand: [3] Ten of Diamonds
-Human player Ivan, please select a card:
-Ten of Diamonds led by Ivan
-Human player Judea's hand: [0] Nine of Spades
-Human player Judea's hand: [1] Ten of Spades
-Human player Judea's hand: [2] King of Hearts
-Human player Judea's hand: [3] Ace of Hearts
-Human player Judea, please select a card:
-Ace of Hearts played by Judea
-Human player Kunle's hand: [0] Queen of Spades
-Human player Kunle's hand: [1] King of Spades
-Human player Kunle's hand: [2] Nine of Clubs
-Human player Kunle's hand: [3] Ten of Clubs
-Human player Kunle, please select a card:
-Queen of Spades played by Kunle
-Human player Liskov's hand: [0] Ace of Spades
-Human player Liskov's hand: [1] Nine of Hearts
-Human player Liskov's hand: [2] Ten of Hearts
-Human player Liskov's hand: [3] Queen of Clubs
-Human player Liskov, please select a card:
-Ten of Hearts played by Liskov
-Judea takes the trick
-
-Human player Judea's hand: [0] Nine of Spades
-Human player Judea's hand: [1] Ten of Spades
-Human player Judea's hand: [2] King of Hearts
-Human player Judea, please select a card:
-Nine of Spades led by Judea
-Human player Kunle's hand: [0] King of Spades
-Human player Kunle's hand: [1] Nine of Clubs
-Human player Kunle's hand: [2] Ten of Clubs
+Human player Kunle's hand: [0] Nine of Clubs
+Human player Kunle's hand: [1] Ten of Clubs
+Human player Kunle's hand: [2] Jack of Clubs
+Human player Kunle's hand: [3] Queen of Spades
+Human player Kunle's hand: [4] King of Spades
 Human player Kunle, please select a card:
 King of Spades played by Kunle
-Human player Liskov's hand: [0] Ace of Spades
-Human player Liskov's hand: [1] Nine of Hearts
+Human player Liskov's hand: [0] Nine of Hearts
+Human player Liskov's hand: [1] Ten of Hearts
 Human player Liskov's hand: [2] Queen of Clubs
+Human player Liskov's hand: [3] King of Clubs
+Human player Liskov's hand: [4] Ace of Spades
 Human player Liskov, please select a card:
 Ace of Spades played by Liskov
-Human player Ivan's hand: [0] Queen of Hearts
-Human player Ivan's hand: [1] Ace of Clubs
-Human player Ivan's hand: [2] Nine of Diamonds
+Human player Ivan's hand: [0] Nine of Diamonds
+Human player Ivan's hand: [1] Ten of Diamonds
+Human player Ivan's hand: [2] Jack of Hearts
+Human player Ivan's hand: [3] Queen of Hearts
+Human player Ivan's hand: [4] Ace of Clubs
 Human player Ivan, please select a card:
 Nine of Diamonds played by Ivan
 Liskov takes the trick
 
 Human player Liskov's hand: [0] Nine of Hearts
-Human player Liskov's hand: [1] Queen of Clubs
+Human player Liskov's hand: [1] Ten of Hearts
+Human player Liskov's hand: [2] Queen of Clubs
+Human player Liskov's hand: [3] King of Clubs
 Human player Liskov, please select a card:
-Nine of Hearts led by Liskov
-Human player Ivan's hand: [0] Queen of Hearts
-Human player Ivan's hand: [1] Ace of Clubs
+King of Clubs led by Liskov
+Human player Ivan's hand: [0] Ten of Diamonds
+Human player Ivan's hand: [1] Jack of Hearts
+Human player Ivan's hand: [2] Queen of Hearts
+Human player Ivan's hand: [3] Ace of Clubs
 Human player Ivan, please select a card:
 Ace of Clubs played by Ivan
+Human player Judea's hand: [0] Nine of Spades
+Human player Judea's hand: [1] Ten of Spades
+Human player Judea's hand: [2] King of Hearts
+Human player Judea's hand: [3] Ace of Hearts
+Human player Judea, please select a card:
+Nine of Spades played by Judea
+Human player Kunle's hand: [0] Nine of Clubs
+Human player Kunle's hand: [1] Ten of Clubs
+Human player Kunle's hand: [2] Jack of Clubs
+Human player Kunle's hand: [3] Queen of Spades
+Human player Kunle, please select a card:
+Jack of Clubs played by Kunle
+Ivan takes the trick
+
+Human player Ivan's hand: [0] Ten of Diamonds
+Human player Ivan's hand: [1] Jack of Hearts
+Human player Ivan's hand: [2] Queen of Hearts
+Human player Ivan, please select a card:
+Ten of Diamonds led by Ivan
 Human player Judea's hand: [0] Ten of Spades
 Human player Judea's hand: [1] King of Hearts
+Human player Judea's hand: [2] Ace of Hearts
 Human player Judea, please select a card:
 Ten of Spades played by Judea
 Human player Kunle's hand: [0] Nine of Clubs
 Human player Kunle's hand: [1] Ten of Clubs
+Human player Kunle's hand: [2] Queen of Spades
+Human player Kunle, please select a card:
+Nine of Clubs played by Kunle
+Human player Liskov's hand: [0] Nine of Hearts
+Human player Liskov's hand: [1] Ten of Hearts
+Human player Liskov's hand: [2] Queen of Clubs
+Human player Liskov, please select a card:
+Queen of Clubs played by Liskov
+Ivan takes the trick
+
+Human player Ivan's hand: [0] Jack of Hearts
+Human player Ivan's hand: [1] Queen of Hearts
+Human player Ivan, please select a card:
+Jack of Hearts led by Ivan
+Human player Judea's hand: [0] King of Hearts
+Human player Judea's hand: [1] Ace of Hearts
+Human player Judea, please select a card:
+Ace of Hearts played by Judea
+Human player Kunle's hand: [0] Ten of Clubs
+Human player Kunle's hand: [1] Queen of Spades
 Human player Kunle, please select a card:
 Ten of Clubs played by Kunle
-Liskov takes the trick
-
-Human player Liskov's hand: [0] Queen of Clubs
+Human player Liskov's hand: [0] Nine of Hearts
+Human player Liskov's hand: [1] Ten of Hearts
 Human player Liskov, please select a card:
-Queen of Clubs led by Liskov
+Ten of Hearts played by Liskov
+Ivan takes the trick
+
 Human player Ivan's hand: [0] Queen of Hearts
 Human player Ivan, please select a card:
-Queen of Hearts played by Ivan
+Queen of Hearts led by Ivan
 Human player Judea's hand: [0] King of Hearts
 Human player Judea, please select a card:
 King of Hearts played by Judea
-Human player Kunle's hand: [0] Nine of Clubs
+Human player Kunle's hand: [0] Queen of Spades
 Human player Kunle, please select a card:
-Nine of Clubs played by Kunle
+Queen of Spades played by Kunle
+Human player Liskov's hand: [0] Nine of Hearts
+Human player Liskov, please select a card:
+Nine of Hearts played by Liskov
 Judea takes the trick
 
-Judea and Liskov win the hand
-Ivan and Kunle have 0 points
+Ivan and Kunle win the hand
+euchred!
+Ivan and Kunle have 2 points
 Judea and Liskov have 0 points
 
 Hand 1
@@ -161,25 +163,25 @@ Human player Kunle's hand: [3] King of Hearts
 Human player Kunle's hand: [4] Ace of Hearts
 Human player Kunle, please enter a suit, or "pass":
 Kunle passes
-Human player Liskov's hand: [0] Queen of Spades
-Human player Liskov's hand: [1] King of Spades
-Human player Liskov's hand: [2] Nine of Clubs
-Human player Liskov's hand: [3] Ten of Clubs
-Human player Liskov's hand: [4] Jack of Clubs
+Human player Liskov's hand: [0] Nine of Clubs
+Human player Liskov's hand: [1] Ten of Clubs
+Human player Liskov's hand: [2] Jack of Clubs
+Human player Liskov's hand: [3] Queen of Spades
+Human player Liskov's hand: [4] King of Spades
 Human player Liskov, please enter a suit, or "pass":
 Liskov passes
-Human player Ivan's hand: [0] Ace of Spades
-Human player Ivan's hand: [1] Nine of Hearts
-Human player Ivan's hand: [2] Ten of Hearts
-Human player Ivan's hand: [3] Queen of Clubs
-Human player Ivan's hand: [4] King of Clubs
+Human player Ivan's hand: [0] Nine of Hearts
+Human player Ivan's hand: [1] Ten of Hearts
+Human player Ivan's hand: [2] Queen of Clubs
+Human player Ivan's hand: [3] King of Clubs
+Human player Ivan's hand: [4] Ace of Spades
 Human player Ivan, please enter a suit, or "pass":
 Ivan passes
-Human player Judea's hand: [0] Jack of Hearts
-Human player Judea's hand: [1] Queen of Hearts
-Human player Judea's hand: [2] Ace of Clubs
-Human player Judea's hand: [3] Nine of Diamonds
-Human player Judea's hand: [4] Ten of Diamonds
+Human player Judea's hand: [0] Nine of Diamonds
+Human player Judea's hand: [1] Ten of Diamonds
+Human player Judea's hand: [2] Jack of Hearts
+Human player Judea's hand: [3] Queen of Hearts
+Human player Judea's hand: [4] Ace of Clubs
 Human player Judea, please enter a suit, or "pass":
 Judea orders up Diamonds
 Human player Judea's hand: [0] Nine of Diamonds
@@ -190,6 +192,7 @@ Human player Judea's hand: [4] Queen of Hearts
 Human player Judea's hand: [5] Ace of Clubs
 Discard upcard: [-1]
 Human player Judea, please select a card to discard:
+
 Human player Kunle's hand: [0] Nine of Spades
 Human player Kunle's hand: [1] Ten of Spades
 Human player Kunle's hand: [2] Jack of Spades
@@ -197,20 +200,20 @@ Human player Kunle's hand: [3] King of Hearts
 Human player Kunle's hand: [4] Ace of Hearts
 Human player Kunle, please select a card:
 Ace of Hearts led by Kunle
-Human player Liskov's hand: [0] Queen of Spades
-Human player Liskov's hand: [1] King of Spades
-Human player Liskov's hand: [2] Nine of Clubs
-Human player Liskov's hand: [3] Ten of Clubs
-Human player Liskov's hand: [4] Jack of Clubs
+Human player Liskov's hand: [0] Nine of Clubs
+Human player Liskov's hand: [1] Ten of Clubs
+Human player Liskov's hand: [2] Jack of Clubs
+Human player Liskov's hand: [3] Queen of Spades
+Human player Liskov's hand: [4] King of Spades
 Human player Liskov, please select a card:
-Queen of Spades played by Liskov
-Human player Ivan's hand: [0] Ace of Spades
-Human player Ivan's hand: [1] Nine of Hearts
-Human player Ivan's hand: [2] Ten of Hearts
-Human player Ivan's hand: [3] Queen of Clubs
-Human player Ivan's hand: [4] King of Clubs
+Nine of Clubs played by Liskov
+Human player Ivan's hand: [0] Nine of Hearts
+Human player Ivan's hand: [1] Ten of Hearts
+Human player Ivan's hand: [2] Queen of Clubs
+Human player Ivan's hand: [3] King of Clubs
+Human player Ivan's hand: [4] Ace of Spades
 Human player Ivan, please select a card:
-Nine of Hearts played by Ivan
+Ten of Hearts played by Ivan
 Human player Judea's hand: [0] Nine of Diamonds
 Human player Judea's hand: [1] Ten of Diamonds
 Human player Judea's hand: [2] Jack of Hearts
@@ -226,18 +229,18 @@ Human player Kunle's hand: [2] Jack of Spades
 Human player Kunle's hand: [3] King of Hearts
 Human player Kunle, please select a card:
 King of Hearts led by Kunle
-Human player Liskov's hand: [0] King of Spades
-Human player Liskov's hand: [1] Nine of Clubs
-Human player Liskov's hand: [2] Ten of Clubs
-Human player Liskov's hand: [3] Jack of Clubs
+Human player Liskov's hand: [0] Ten of Clubs
+Human player Liskov's hand: [1] Jack of Clubs
+Human player Liskov's hand: [2] Queen of Spades
+Human player Liskov's hand: [3] King of Spades
 Human player Liskov, please select a card:
-King of Spades played by Liskov
-Human player Ivan's hand: [0] Ace of Spades
-Human player Ivan's hand: [1] Ten of Hearts
-Human player Ivan's hand: [2] Queen of Clubs
-Human player Ivan's hand: [3] King of Clubs
+Ten of Clubs played by Liskov
+Human player Ivan's hand: [0] Nine of Hearts
+Human player Ivan's hand: [1] Queen of Clubs
+Human player Ivan's hand: [2] King of Clubs
+Human player Ivan's hand: [3] Ace of Spades
 Human player Ivan, please select a card:
-Ace of Spades played by Ivan
+Nine of Hearts played by Ivan
 Human player Judea's hand: [0] Nine of Diamonds
 Human player Judea's hand: [1] Ten of Diamonds
 Human player Judea's hand: [2] Jack of Hearts
@@ -256,16 +259,16 @@ Human player Kunle's hand: [1] Ten of Spades
 Human player Kunle's hand: [2] Jack of Spades
 Human player Kunle, please select a card:
 Nine of Spades played by Kunle
-Human player Liskov's hand: [0] Nine of Clubs
-Human player Liskov's hand: [1] Ten of Clubs
-Human player Liskov's hand: [2] Jack of Clubs
+Human player Liskov's hand: [0] Jack of Clubs
+Human player Liskov's hand: [1] Queen of Spades
+Human player Liskov's hand: [2] King of Spades
 Human player Liskov, please select a card:
-Nine of Clubs played by Liskov
-Human player Ivan's hand: [0] Ten of Hearts
-Human player Ivan's hand: [1] Queen of Clubs
-Human player Ivan's hand: [2] King of Clubs
+Jack of Clubs played by Liskov
+Human player Ivan's hand: [0] Queen of Clubs
+Human player Ivan's hand: [1] King of Clubs
+Human player Ivan's hand: [2] Ace of Spades
 Human player Ivan, please select a card:
-Ten of Hearts played by Ivan
+Queen of Clubs played by Ivan
 Judea takes the trick
 
 Human player Judea's hand: [0] Ten of Diamonds
@@ -276,14 +279,14 @@ Human player Kunle's hand: [0] Ten of Spades
 Human player Kunle's hand: [1] Jack of Spades
 Human player Kunle, please select a card:
 Ten of Spades played by Kunle
-Human player Liskov's hand: [0] Ten of Clubs
-Human player Liskov's hand: [1] Jack of Clubs
+Human player Liskov's hand: [0] Queen of Spades
+Human player Liskov's hand: [1] King of Spades
 Human player Liskov, please select a card:
-Ten of Clubs played by Liskov
-Human player Ivan's hand: [0] Queen of Clubs
-Human player Ivan's hand: [1] King of Clubs
+Queen of Spades played by Liskov
+Human player Ivan's hand: [0] King of Clubs
+Human player Ivan's hand: [1] Ace of Spades
 Human player Ivan, please select a card:
-Queen of Clubs played by Ivan
+King of Clubs played by Ivan
 Judea takes the trick
 
 Human player Judea's hand: [0] Ten of Diamonds
@@ -292,16 +295,16 @@ Ten of Diamonds led by Judea
 Human player Kunle's hand: [0] Jack of Spades
 Human player Kunle, please select a card:
 Jack of Spades played by Kunle
-Human player Liskov's hand: [0] Jack of Clubs
+Human player Liskov's hand: [0] King of Spades
 Human player Liskov, please select a card:
-Jack of Clubs played by Liskov
-Human player Ivan's hand: [0] King of Clubs
+King of Spades played by Liskov
+Human player Ivan's hand: [0] Ace of Spades
 Human player Ivan, please select a card:
-King of Clubs played by Ivan
+Ace of Spades played by Ivan
 Judea takes the trick
 
 Judea and Liskov win the hand
-Ivan and Kunle have 0 points
+Ivan and Kunle have 2 points
 Judea and Liskov have 1 points
 
 Hand 2
@@ -314,25 +317,25 @@ Human player Liskov's hand: [3] King of Hearts
 Human player Liskov's hand: [4] Ace of Hearts
 Human player Liskov, please enter a suit, or "pass":
 Liskov passes
-Human player Ivan's hand: [0] Queen of Spades
-Human player Ivan's hand: [1] King of Spades
-Human player Ivan's hand: [2] Nine of Clubs
-Human player Ivan's hand: [3] Ten of Clubs
-Human player Ivan's hand: [4] Jack of Clubs
+Human player Ivan's hand: [0] Nine of Clubs
+Human player Ivan's hand: [1] Ten of Clubs
+Human player Ivan's hand: [2] Jack of Clubs
+Human player Ivan's hand: [3] Queen of Spades
+Human player Ivan's hand: [4] King of Spades
 Human player Ivan, please enter a suit, or "pass":
 Ivan passes
-Human player Judea's hand: [0] Ace of Spades
-Human player Judea's hand: [1] Nine of Hearts
-Human player Judea's hand: [2] Ten of Hearts
-Human player Judea's hand: [3] Queen of Clubs
-Human player Judea's hand: [4] King of Clubs
+Human player Judea's hand: [0] Nine of Hearts
+Human player Judea's hand: [1] Ten of Hearts
+Human player Judea's hand: [2] Queen of Clubs
+Human player Judea's hand: [3] King of Clubs
+Human player Judea's hand: [4] Ace of Spades
 Human player Judea, please enter a suit, or "pass":
 Judea passes
-Human player Kunle's hand: [0] Jack of Hearts
-Human player Kunle's hand: [1] Queen of Hearts
-Human player Kunle's hand: [2] Ace of Clubs
-Human player Kunle's hand: [3] Nine of Diamonds
-Human player Kunle's hand: [4] Ten of Diamonds
+Human player Kunle's hand: [0] Nine of Diamonds
+Human player Kunle's hand: [1] Ten of Diamonds
+Human player Kunle's hand: [2] Jack of Hearts
+Human player Kunle's hand: [3] Queen of Hearts
+Human player Kunle's hand: [4] Ace of Clubs
 Human player Kunle, please enter a suit, or "pass":
 Kunle passes
 Human player Liskov's hand: [0] Nine of Spades
@@ -342,6 +345,7 @@ Human player Liskov's hand: [3] King of Hearts
 Human player Liskov's hand: [4] Ace of Hearts
 Human player Liskov, please enter a suit, or "pass":
 Liskov orders up Hearts
+
 Human player Liskov's hand: [0] Nine of Spades
 Human player Liskov's hand: [1] Ten of Spades
 Human player Liskov's hand: [2] Jack of Spades
@@ -349,119 +353,112 @@ Human player Liskov's hand: [3] King of Hearts
 Human player Liskov's hand: [4] Ace of Hearts
 Human player Liskov, please select a card:
 Jack of Spades led by Liskov
-Human player Ivan's hand: [0] Queen of Spades
-Human player Ivan's hand: [1] King of Spades
-Human player Ivan's hand: [2] Nine of Clubs
-Human player Ivan's hand: [3] Ten of Clubs
-Human player Ivan's hand: [4] Jack of Clubs
-Human player Ivan, please select a card:
-Jack of Clubs played by Ivan
-Human player Judea's hand: [0] Ace of Spades
-Human player Judea's hand: [1] Nine of Hearts
-Human player Judea's hand: [2] Ten of Hearts
-Human player Judea's hand: [3] Queen of Clubs
-Human player Judea's hand: [4] King of Clubs
-Human player Judea, please select a card:
-King of Clubs played by Judea
-Human player Kunle's hand: [0] Jack of Hearts
-Human player Kunle's hand: [1] Queen of Hearts
-Human player Kunle's hand: [2] Ace of Clubs
-Human player Kunle's hand: [3] Nine of Diamonds
-Human player Kunle's hand: [4] Ten of Diamonds
-Human player Kunle, please select a card:
-Jack of Hearts played by Kunle
-Kunle takes the trick
-
-Human player Kunle's hand: [0] Queen of Hearts
-Human player Kunle's hand: [1] Ace of Clubs
-Human player Kunle's hand: [2] Nine of Diamonds
-Human player Kunle's hand: [3] Ten of Diamonds
-Human player Kunle, please select a card:
-Ten of Diamonds led by Kunle
-Human player Liskov's hand: [0] Nine of Spades
-Human player Liskov's hand: [1] Ten of Spades
-Human player Liskov's hand: [2] King of Hearts
-Human player Liskov's hand: [3] Ace of Hearts
-Human player Liskov, please select a card:
-Ace of Hearts played by Liskov
-Human player Ivan's hand: [0] Queen of Spades
-Human player Ivan's hand: [1] King of Spades
-Human player Ivan's hand: [2] Nine of Clubs
-Human player Ivan's hand: [3] Ten of Clubs
-Human player Ivan, please select a card:
-Queen of Spades played by Ivan
-Human player Judea's hand: [0] Ace of Spades
-Human player Judea's hand: [1] Nine of Hearts
-Human player Judea's hand: [2] Ten of Hearts
-Human player Judea's hand: [3] Queen of Clubs
-Human player Judea, please select a card:
-Ten of Hearts played by Judea
-Liskov takes the trick
-
-Human player Liskov's hand: [0] Nine of Spades
-Human player Liskov's hand: [1] Ten of Spades
-Human player Liskov's hand: [2] King of Hearts
-Human player Liskov, please select a card:
-Nine of Spades led by Liskov
-Human player Ivan's hand: [0] King of Spades
-Human player Ivan's hand: [1] Nine of Clubs
-Human player Ivan's hand: [2] Ten of Clubs
+Human player Ivan's hand: [0] Nine of Clubs
+Human player Ivan's hand: [1] Ten of Clubs
+Human player Ivan's hand: [2] Jack of Clubs
+Human player Ivan's hand: [3] Queen of Spades
+Human player Ivan's hand: [4] King of Spades
 Human player Ivan, please select a card:
 King of Spades played by Ivan
-Human player Judea's hand: [0] Ace of Spades
-Human player Judea's hand: [1] Nine of Hearts
+Human player Judea's hand: [0] Nine of Hearts
+Human player Judea's hand: [1] Ten of Hearts
 Human player Judea's hand: [2] Queen of Clubs
+Human player Judea's hand: [3] King of Clubs
+Human player Judea's hand: [4] Ace of Spades
 Human player Judea, please select a card:
 Ace of Spades played by Judea
-Human player Kunle's hand: [0] Queen of Hearts
-Human player Kunle's hand: [1] Ace of Clubs
-Human player Kunle's hand: [2] Nine of Diamonds
+Human player Kunle's hand: [0] Nine of Diamonds
+Human player Kunle's hand: [1] Ten of Diamonds
+Human player Kunle's hand: [2] Jack of Hearts
+Human player Kunle's hand: [3] Queen of Hearts
+Human player Kunle's hand: [4] Ace of Clubs
 Human player Kunle, please select a card:
 Nine of Diamonds played by Kunle
 Judea takes the trick
 
 Human player Judea's hand: [0] Nine of Hearts
-Human player Judea's hand: [1] Queen of Clubs
+Human player Judea's hand: [1] Ten of Hearts
+Human player Judea's hand: [2] Queen of Clubs
+Human player Judea's hand: [3] King of Clubs
 Human player Judea, please select a card:
-Queen of Clubs led by Judea
-Human player Kunle's hand: [0] Queen of Hearts
-Human player Kunle's hand: [1] Ace of Clubs
+King of Clubs led by Judea
+Human player Kunle's hand: [0] Ten of Diamonds
+Human player Kunle's hand: [1] Jack of Hearts
+Human player Kunle's hand: [2] Queen of Hearts
+Human player Kunle's hand: [3] Ace of Clubs
 Human player Kunle, please select a card:
 Ace of Clubs played by Kunle
+Human player Liskov's hand: [0] Nine of Spades
+Human player Liskov's hand: [1] Ten of Spades
+Human player Liskov's hand: [2] King of Hearts
+Human player Liskov's hand: [3] Ace of Hearts
+Human player Liskov, please select a card:
+Nine of Spades played by Liskov
+Human player Ivan's hand: [0] Nine of Clubs
+Human player Ivan's hand: [1] Ten of Clubs
+Human player Ivan's hand: [2] Jack of Clubs
+Human player Ivan's hand: [3] Queen of Spades
+Human player Ivan, please select a card:
+Jack of Clubs played by Ivan
+Kunle takes the trick
+
+Human player Kunle's hand: [0] Ten of Diamonds
+Human player Kunle's hand: [1] Jack of Hearts
+Human player Kunle's hand: [2] Queen of Hearts
+Human player Kunle, please select a card:
+Ten of Diamonds led by Kunle
 Human player Liskov's hand: [0] Ten of Spades
 Human player Liskov's hand: [1] King of Hearts
+Human player Liskov's hand: [2] Ace of Hearts
 Human player Liskov, please select a card:
 Ten of Spades played by Liskov
 Human player Ivan's hand: [0] Nine of Clubs
 Human player Ivan's hand: [1] Ten of Clubs
-Human player Ivan, please select a card:
-Ten of Clubs played by Ivan
-Kunle takes the trick
-
-Human player Kunle's hand: [0] Queen of Hearts
-Human player Kunle, please select a card:
-Queen of Hearts led by Kunle
-Human player Liskov's hand: [0] King of Hearts
-Human player Liskov, please select a card:
-King of Hearts played by Liskov
-Human player Ivan's hand: [0] Nine of Clubs
+Human player Ivan's hand: [2] Queen of Spades
 Human player Ivan, please select a card:
 Nine of Clubs played by Ivan
 Human player Judea's hand: [0] Nine of Hearts
+Human player Judea's hand: [1] Ten of Hearts
+Human player Judea's hand: [2] Queen of Clubs
 Human player Judea, please select a card:
-Nine of Hearts played by Judea
+Queen of Clubs played by Judea
+Kunle takes the trick
+
+Human player Kunle's hand: [0] Jack of Hearts
+Human player Kunle's hand: [1] Queen of Hearts
+Human player Kunle, please select a card:
+Queen of Hearts led by Kunle
+Human player Liskov's hand: [0] King of Hearts
+Human player Liskov's hand: [1] Ace of Hearts
+Human player Liskov, please select a card:
+Ace of Hearts played by Liskov
+Human player Ivan's hand: [0] Ten of Clubs
+Human player Ivan's hand: [1] Queen of Spades
+Human player Ivan, please select a card:
+Ten of Clubs played by Ivan
+Human player Judea's hand: [0] Nine of Hearts
+Human player Judea's hand: [1] Ten of Hearts
+Human player Judea, please select a card:
+Ten of Hearts played by Judea
 Liskov takes the trick
 
-Judea and Liskov win the hand
-Ivan and Kunle have 0 points
-Judea and Liskov have 2 points
+Human player Liskov's hand: [0] King of Hearts
+Human player Liskov, please select a card:
+King of Hearts led by Liskov
+Human player Ivan's hand: [0] Queen of Spades
+Human player Ivan, please select a card:
+Queen of Spades played by Ivan
+Human player Judea's hand: [0] Nine of Hearts
+Human player Judea, please select a card:
+Nine of Hearts played by Judea
+Human player Kunle's hand: [0] Jack of Hearts
+Human player Kunle, please select a card:
+Jack of Hearts played by Kunle
+Kunle takes the trick
 
-Hand 3
-Liskov deals
-Jack of Diamonds turned up
-Human player Ivan's hand: [0] Nine of Spades
-Human player Ivan's hand: [1] Ten of Spades
-Human player Ivan's hand: [2] Jack of Spades
-Human player Ivan's hand: [3] King of Hearts
-Human player Ivan's hand: [4] Ace of Hearts
-Human player Ivan, please enter a suit, or "pass":
+Ivan and Kunle win the hand
+euchred!
+Ivan and Kunle have 4 points
+Judea and Liskov have 1 points
+
+Ivan and Kunle win!
