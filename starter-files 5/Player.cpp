@@ -14,6 +14,7 @@ class SimplePlayer : public Player {
     void add_card(const Card &c) {
       assert(MAX_HAND_SIZE > allCards.size());
       allCards.push_back(c);
+      std::sort(allCards.begin(), allCards.end());
     }
 
     bool make_trump(const Card &upcard, bool is_dealer, int round, Suit &order_up_suit) const {
@@ -61,6 +62,7 @@ class SimplePlayer : public Player {
         }
       }
       allCards.erase(allCards.begin() + worstCardIndex);
+      std::sort(allCards.begin(), allCards.end());
     }
 
     Card lead_card(Suit trump) {
@@ -146,6 +148,7 @@ class HumanPlayer : public Player {
 
     void add_and_discard(const Card &upcard)  {
       allCards.push_back(upcard);
+      std::sort(allCards.begin(), allCards.end());
       print_hand();
       std::cout << "Discard upcard: [-1]\n";
       std::cout << "Human player " << name << ", please select a card to discard:\n";
@@ -156,7 +159,6 @@ class HumanPlayer : public Player {
       } else {
         allCards.erase(allCards.begin() + chosenIndex);
       }
-
 
     }
 

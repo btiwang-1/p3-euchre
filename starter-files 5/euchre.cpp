@@ -6,9 +6,7 @@
 #include "Card.hpp"
 #include "Pack.hpp"
 
-
 using namespace std;
-
 
 class Team {
     public:
@@ -72,7 +70,7 @@ class Game {
     }
     
     void play(int *gameEnd, istream& isme) {
-        if (winner != &t1 && winner != &t2){
+        if (winner == nullptr){
             play_hand(&t1, &t2, gameEnd, isme);
         } else {
             *gameEnd = 1;
@@ -88,7 +86,7 @@ class Game {
     int hand_num = 0;
     std::vector<Player*> players;
     bool isShuffles = false;
-    int NUM_TRICKS = 5;
+    const int NUM_TRICKS = 5;
     Team t1;
     Team t2;
     Team* winner = nullptr; 
@@ -138,9 +136,10 @@ class Game {
         for (int round = 1; round <= 2; ++round) {
             for (int i = 0; i < 4; ++i) {
                 int currentPlayer = (starterIndex + i) % 4;
-                bool dealStickerVariableName = (round == 1 && i == 3);
+                bool deald = (round == 2 && i == 3);
 
-                if (dealStickerVariableName || players[currentPlayer]->make_trump(upcard, (currentPlayer == dealerIndex), round, trump)) {
+                if (deald || players[currentPlayer]->make_trump(upcard, 
+                        (currentPlayer == dealerIndex), round, trump)) {
                     cout << players[currentPlayer]->get_name() << " orders up " << trump << "\n";
                     bool yes = true;
                     if (currentPlayer % 2 == 0) { t1.order_up(yes); } 
@@ -155,15 +154,15 @@ class Game {
     } 
     void print_handwinner(bool odup, Player* p1, Player* p2) {
         cout << p1->get_name() << " and " << p2->get_name() << " win the hand" << endl;
+        
         Team* winning_team;
         if (players[0] == p1 || players[2] == p1) { winning_team = &t1; } 
         else { winning_team = &t2; }
-    
-        int points_earned = winning_team->calculate();
-        if (odup) {
-            if (points_earned == 2) { cout << "march!" << endl; }
-        } else {
-            if (points_earned == 2) { cout << "euchred!" << endl; }
+
+        if (odup && winning_team->get_tricks() == 5) {
+         cout << "march!" << endl;
+        } else if (!odup && winning_team->get_tricks() >= 3) {
+            cout << "euchred!" << endl;
         }
     }
 
@@ -185,8 +184,6 @@ class Game {
         } else {
             print_handwinner(tm2->ordered_up(), tm2->get_playerone(), tm2->get_playertwo());
         }
-        t1.reset();
-        t2.reset();
         cout << t1.get_playerone()->get_name() << " and " << t1.get_playertwo()->get_name() 
          << " have " << t1.total_points() << " points\n";
         cout << t2.get_playerone()->get_name() << " and " << t2.get_playertwo()->get_name() 
@@ -202,6 +199,8 @@ class Game {
             cout << t2.get_playerone()->get_name() << " and " 
              << t2.get_playertwo()->get_name() << " win!" << endl;
         }
+        t1.reset();
+        t2.reset();
         dealerIndex = (dealerIndex + 1) % 4;
         hand_num++;
     } // REMEMBER: each hand, rotate the dealer 1 to the left; Eldest Hand leads the first trick
